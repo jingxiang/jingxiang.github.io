@@ -1,0 +1,1788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[老夫正年轻]]></title>
+  <subtitle><![CDATA[醒握杀人剑，醉卧美人膝]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://blog.12xiaoshi.com/"/>
+  <updated>2016-09-03T15:52:15.852Z</updated>
+  <id>http://blog.12xiaoshi.com/</id>
+  
+  <author>
+    <name><![CDATA[老夫正年轻]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[如何评估产品机会]]></title>
+    <link href="http://blog.12xiaoshi.com/2016/09/03/tech/product_opt/"/>
+    <id>http://blog.12xiaoshi.com/2016/09/03/tech/product_opt/</id>
+    <published>2016-09-03T15:51:01.000Z</published>
+    <updated>2016-09-03T15:52:15.852Z</updated>
+    <content type="html"><![CDATA[<pre><code>1、产品需要解决什么问题？（产品价值）
+2、为谁解决这个问题？（目标市场）
+3、成功的机会有多大？（市场规模）
+4、怎样判断产品成功与否？（度量指标或收益指标）
+5、有哪些同类产品？（竞争格局）
+6、为什么我们最适合做这个产品？（竞争优势）
+7、时机合适吗？（市场时机）
+8、如何把产品推向市场？（有效组合策略）
+9、成功的必要条件是什么？（解决方案要满足的条件）
+10、根据以上问题，给出评估结论。（继续或放弃）
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>1、产品需要解决什么问题？（产品价值）
+2、为谁解决这个问题？（目标市场）
+3、成功的机会有多大？（市场规模）
+4、怎样判断产品成功与否？（度量指标或收益指标）
+5、有哪些同类产品？（竞争格局）
+6、为什么我们最适合做这个产品？（竞争优势）
+7、时机合适吗？]]>
+    </summary>
+    
+      <category term="产品经理" scheme="http://blog.12xiaoshi.com/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[SSH连CentOS卡很久才连上]]></title>
+    <link href="http://blog.12xiaoshi.com/2016/08/18/tech/ssh_slow/"/>
+    <id>http://blog.12xiaoshi.com/2016/08/18/tech/ssh_slow/</id>
+    <published>2016-08-18T10:35:01.000Z</published>
+    <updated>2016-08-18T10:57:07.980Z</updated>
+    <content type="html"><![CDATA[<h3 id="解决办法：">解决办法：</h3><pre><code>sudo vi <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config</span>
+</code></pre><p>找到GSSAPIAuthentication yes，修改为</p>
+<pre><code><span class="title">GSSAPIAuthentication</span> <span class="built_in">no</span>
+</code></pre><p>UseDNS修改为no，CentOS默认是yes，即使这行已被注释，你也需要加上</p>
+<pre><code><span class="title">UseDNS</span> <span class="built_in">no</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="解决办法：">解决办法：</h3><pre><code>sudo vi <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config</span>
+</code></pre><p>找到G]]>
+    </summary>
+    
+      <category term="centos" scheme="http://blog.12xiaoshi.com/tags/centos/"/>
+    
+      <category term="ssh" scheme="http://blog.12xiaoshi.com/tags/ssh/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[客户端API请求规范]]></title>
+    <link href="http://blog.12xiaoshi.com/2016/03/31/tech/api-constraint_design/"/>
+    <id>http://blog.12xiaoshi.com/2016/03/31/tech/api-constraint_design/</id>
+    <published>2016-03-31T01:35:01.000Z</published>
+    <updated>2016-03-31T02:36:00.950Z</updated>
+    <content type="html"><![CDATA[<p>这是一份老夫制定的客户端API请求规范，现在分享出来，希望对各位有帮助。</p>
+<p>API请求规范，兼在明确iOS/Android等native客户端请求服务端接口的协议、参数和响应结果，所有的APP必须按照这个规范与服务端进行交互。</p>
+<h3 id="1、请求协议">1、请求协议</h3><p>所有与服务端交互的API，都走<strong>HTTP(S)</strong>协议。</p>
+<h3 id="2、请求参数">2、请求参数</h3><p>API的请求参数分两部分，一部分为<strong>协议参数</strong>，属于协议本身，与业务关务，如t,imei,appkey等；一部分为<strong>业务参数</strong>，这些参数会对系统中的系统流程、操作方式产生重要的影响。</p>
+<a id="more"></a>
+<p><strong>协议参数</strong></p>
+<p>服务端约定，客户端需在每次请求的URL里面，加上下列协议参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>是否必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>imei</td>
+<td>必须</td>
+<td>INTERNATIONAL_MOBILE_EQUIPMENT_IDENTITY,客户端设备标识，国际移动设备身份码</td>
+</tr>
+<tr>
+<td>imsi</td>
+<td>必须</td>
+<td>INTERNATIONAL_MOBILE_SUBSCRIBER_IDENTITIFICATION_NUMBER,客户端用户标识</td>
+</tr>
+<tr>
+<td>t</td>
+<td>必须</td>
+<td>TIMESTAMP,请求的时间戳，UTC 1970-1-1 0时到现在的时间差，精确到秒</td>
+</tr>
+<tr>
+<td>appkey</td>
+<td>必须</td>
+<td>由服务端颁发的appkey</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>必须</td>
+<td>md5签名串</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>可选</td>
+<td>LONGITUDE,手机上获取的经度</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>可选</td>
+<td>LATITUDE,手机上获取的纬度</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>可选</td>
+<td><code>CHANNEL_IDENTITY</code>,渠道标识，格式为：channelId@应用名<em>平台</em>客户端版本，例如：1001@nzaom_android_1.0，其中1001表示应用宝</td>
+</tr>
+</tbody>
+</table>
+<p><strong>业务参数</strong></p>
+<p>业务具体参数由服务端在接口文档中进行约定。</p>
+<h4 id="2-1、参数传递">2.1、参数传递</h4><p>协议参数必须通过url parameter传递，业务参数通过body，path，url parameter等多样化的形式传递。</p>
+<p>服务端提供标准的Restful API，支持<strong>POST\DELETE\PUT\PATCH\GET</strong>方式。</p>
+<p>下面两个示例分别演示GET和POST的请求:</p>
+<p>GET</p>
+<pre><code><span class="request">GET <span class="string">http://localhost:80/api/testGet?appkey=123456&amp;data=%7B%22name%22%3A%22%E5%A4%A7%E7%99%BD%22%2C%22sex%22%3A%22%E7%94%B7%22%7D&amp;ci=1001_nzaom_android_1.0&amp;imei=imei11111&amp;imsi=imsi22222&amp;lat=23.1&amp;lng=111.21&amp;t=1432747514991&amp;sign=760b2c16ddd8b47288b0e16871fbd5de</span> HTTP/1.1</span>
+<span class="attribute">Host</span>: <span class="string">localhost:80</span>
+<span class="attribute">Connection</span>: <span class="string">Keep-Alive</span>
+<span class="attribute">User-Agent</span>: <span class="string">Apache-HttpClient/4.4.1 (Java/1.7.0_51)</span>
+<span class="attribute">Accept-Encoding</span>: <span class="string">gzip,deflate</span>
+
+<span class="http"><span class="status">HTTP/1.1 <span class="number">200</span> OK</span>
+<span class="attribute">Content-Type</span>: <span class="string">application/json;charset=UTF-8</span>
+<span class="attribute">Expires</span>: <span class="string">Thu, 01 Jan 1970 00:00:00 GMT</span>
+<span class="attribute">Set-Cookie</span>: <span class="string">SESSION=7a449d11-9a09-45b4-9c49-f43f0131ee51;Path=/</span>
+<span class="attribute">Content-Length</span>: <span class="string">49</span>
+<span class="attribute">Server</span>: <span class="string">Jetty(6.1.22)</span>
+
+<span class="clojure"><span class="collection">{<span class="string">"data"</span>: <span class="collection">{<span class="string">"name"</span>:<span class="string">"大白"</span>,<span class="string">"sex"</span>:<span class="string">"男"</span>}</span>,message:<span class="string">"OK"</span>,<span class="string">"status"</span>: <span class="number">200</span>}</span></span></span>
+</code></pre><p>POST</p>
+<pre><code><span class="request">POST <span class="string">http://localhost:80/api/testPost?appkey=123456&amp;data=%7B%22name%22%3A%22%E5%A4%A7%E7%99%BD%22%2C%22sex%22%3A%22%E7%94%B7%22%7D&amp;hci=1001_hehuyou_android_1.0&amp;imei=imei11111&amp;imsi=imsi22222&amp;lat=23.1&amp;lng=111.21&amp;t=1432747714602&amp;sign=2dfb020566c7d826e3ed7276c7c49fb8</span> HTTP/1.1</span>
+<span class="attribute">Content-Type</span>: <span class="string">application/json;charset=UTF-8</span>
+<span class="attribute">Content-Length</span>: <span class="string">29</span>
+<span class="attribute">Host</span>: <span class="string">localhost:80</span>
+<span class="attribute">Connection</span>: <span class="string">Keep-Alive</span>
+<span class="attribute">User-Agent</span>: <span class="string">Apache-HttpClient/4.4.1 (Java/1.7.0_51)</span>
+<span class="attribute">Accept-Encoding</span>: <span class="string">gzip,deflate</span>
+
+<span class="groovy">{<span class="string">"name"</span>:<span class="string">"大白"</span>,<span class="string">"sex"</span>:<span class="string">"男"</span>}
+
+HTTP/<span class="number">1.1</span> <span class="number">200</span> OK
+Content-<span class="string">Type:</span> application/json;charset=UTF-<span class="number">8</span>
+<span class="string">Expires:</span> Thu, <span class="number">01</span> Jan <span class="number">1970</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> GMT
+Set-<span class="string">Cookie:</span> SESSION=<span class="number">13e853</span>c2-<span class="number">2</span>f55-<span class="number">43</span>c6-b4f0-cb016590141a;Path=/
+Content-<span class="string">Length:</span> <span class="number">49</span>
+<span class="string">Server:</span> Jetty(<span class="number">6.1</span>.22)
+
+{<span class="string">"message"</span>: <span class="string">"权限不够"</span>,<span class="string">"status"</span>: <span class="number">403</span>}</span>
+</code></pre><h4 id="2-2_参数Sign">2.2 参数Sign</h4><p>为了减轻非法恶意请求，每次来自APP的请求都需要对请求参数进行签名以实现安全认证。通过参数sign来验证参数传递是否合法，具体流程如下：</p>
+<ol>
+<li><p>根据参数名称（除签名sign）将所有请求参数按照字母先后顺序排序:key + value …. key + value，例如：将foo=1,bar=2,baz=3 排序为bar=2,baz=3,foo=1，参数名和参数值链接后，得到拼装字符串bar2baz3foo1</p>
+</li>
+<li><p>将secret拼接到参数字符串尾进行md5加密后，再转化成大写，格式是：byte2hex(md5(secretkey1value1key2value2…secret))</p>
+</li>
+<li><p>第2步生成的字符串即为参数sign</p>
+</li>
+</ol>
+<p><strong>参考代码（Java版本）：</strong></p>
+<pre><code>TreeMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; tree=<span class="keyword">new</span> TreeMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt;();
+Enumeration&lt;<span class="keyword">String</span>&gt; enums = request.getParameterNames();
+<span class="keyword">String</span> param=<span class="string">""</span>;
+
+<span class="keyword">while</span>(enums.hasMoreElements()){
+  <span class="keyword">String</span> ele = enums.nextElement();
+  tree.put(ele, request.getParameter(ele));
+}
+Iterator&lt;<span class="keyword">String</span>&gt; it = tree.keySet().iterator();
+
+<span class="keyword">while</span>( it.hasNext() ){
+  <span class="keyword">String</span> v=it.next();
+  <span class="comment">//System.out.println(" "+v+" decode:"+java.net.URLDecoder.decode(request.getParameter(v),"utf-8"));</span>
+  <span class="keyword">if</span>(!<span class="string">"sign"</span>.equals(v)){
+  param+=v+java.net.URLDecoder.decode(request.getParameter(v),<span class="string">"utf-8"</span>);
+  }
+}
+
+param = param+SECRET;
+<span class="keyword">String</span> sign2=Md5.sign(param).toUpperCase();
+System.out.<span class="built_in">println</span>(<span class="string">"sign:"</span>+sign);
+System.out.<span class="built_in">println</span>(<span class="string">"sign2:"</span>+sign2);
+<span class="keyword">if</span>(!sign2.equalsIgnoreCase(sign)){
+  System.out.<span class="built_in">println</span>(<span class="string">"非法访问"</span>);
+}
+</code></pre><p><strong>注意事项：</strong></p>
+<ul>
+<li>所有的参数皆为utf-8格式</li>
+</ul>
+<h4 id="2-3_关于登录">2.3 关于登录</h4><p>服务端和客户端都是采用基于Header的用户会话状态解决方案。登录后需要将服务端返回的token设置在Header的参数X-Auth-Token中。</p>
+<h4 id="2-3_关于Header">2.3 关于Header</h4><p>目前必须传递的两个Header参数分别是：</p>
+<pre><code>X-Auth-Token
+X-<span class="keyword">Platform</span>
+</code></pre><p>其中X-Auth-Token为会话token，X-Platform为请求的终端系统，如iOS、Android。如果涉及到API版本，请将版本的参数设置在Header中，Header的key为：<strong>X-Api-Version</strong></p>
+<h3 id="3、响应结果">3、响应结果</h3><p>服务端都以json格式返回，分成功、失败两种状态。</p>
+<p>成功：</p>
+<pre><code><span class="collection">{<span class="string">"data"</span>: <span class="collection">{<span class="string">"name"</span>:<span class="string">"大白"</span>,<span class="string">"sex"</span>:<span class="string">"男"</span>}</span>,message:<span class="string">"OK"</span>,<span class="string">"status"</span>: <span class="number">200</span>}</span>
+
+<span class="collection">{<span class="string">"data"</span>: <span class="collection">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</span>,message:<span class="string">"OK"</span>,<span class="string">"status"</span>: <span class="number">200</span>}</span>
+</code></pre><p>失败：</p>
+<pre><code>{"<span class="attribute">message</span>": <span class="value"><span class="string">"权限不够"</span></span>,"<span class="attribute">status</span>": <span class="value"><span class="number">403</span></span>}
+</code></pre><p><strong>4、关于错误码</strong></p>
+<pre><code>400：非法请求
+401：未登陆
+403：权限不够
+500：系统错误
+
+900：业务级别的错误
+200：正常请求
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是一份老夫制定的客户端API请求规范，现在分享出来，希望对各位有帮助。</p>
+<p>API请求规范，兼在明确iOS/Android等native客户端请求服务端接口的协议、参数和响应结果，所有的APP必须按照这个规范与服务端进行交互。</p>
+<h3 id="1、请求协议">1、请求协议</h3><p>所有与服务端交互的API，都走<strong>HTTP(S)</strong>协议。</p>
+<h3 id="2、请求参数">2、请求参数</h3><p>API的请求参数分两部分，一部分为<strong>协议参数</strong>，属于协议本身，与业务关务，如t,imei,appkey等；一部分为<strong>业务参数</strong>，这些参数会对系统中的系统流程、操作方式产生重要的影响。</p>]]>
+    
+    </summary>
+    
+      <category term="API设计" scheme="http://blog.12xiaoshi.com/tags/API%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="Restfull" scheme="http://blog.12xiaoshi.com/tags/Restfull/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="服务端与客户端交互" scheme="http://blog.12xiaoshi.com/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BA%A4%E4%BA%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[一种适合创业公司的技术架构方案]]></title>
+    <link href="http://blog.12xiaoshi.com/2016/03/30/tech/normal_design_base_aliyun/"/>
+    <id>http://blog.12xiaoshi.com/2016/03/30/tech/normal_design_base_aliyun/</id>
+    <published>2016-03-30T03:35:01.000Z</published>
+    <updated>2016-03-30T08:42:04.529Z</updated>
+    <content type="html"><![CDATA[<p>创业公司，觉得很重要的一点，是快速的以市场行动去验证业务方向的可行性。对于在创业公司的技术团队，一支作为服务支撑的团队，应该遵循的设计原则是：</p>
+<ul>
+<li>业务驱动</li>
+<li>横向扩展</li>
+<li>互联网通用技术</li>
+</ul>
+<p>在此前提下，老夫基于阿里云服务实践（是实践不是YY）了一套技术架构方案，如果你不幸步行于此，希望下图没有坑害到你。</p>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2O4g6lVXXXXc6XXXXXXXXXXXX-102975691.jpg" alt=""><br><a id="more"></a><br>与其说是架构方案，还不如说是脚手架，因为你所看到的，都是我们最常用的框架和技术，可能不同的是，用了一些阿里云的一些服务。</p>
+<p>对于上图，老夫解答一些可能会存在疑问的点。</p>
+<h4 id="问题1：用了阿里云负载均衡（SLB），nginx做什么用？">问题1：用了阿里云负载均衡（SLB），nginx做什么用？</h4><blockquote>
+<p>SLB的主要作用的是负载均衡，同样nginx也可以做。如果只是单纯考虑负载均衡，阿里云的SLB优越性更高。</p>
+<p>但nginx可以做的更多，如反向代理、HTTP服务器，灵活性更高。所以如果要精简，阿里云的SLB确实可以拿掉。</p>
+<p>在实践的过程中，老夫同时用了nginx和SLB，除了反向代理，nginx还承担了一个静态站点的HTTP服务。</p>
+</blockquote>
+<h4 id="问题2：nginx可以换成apache吗？">问题2：nginx可以换成apache吗？</h4><blockquote>
+<p>别废话，白菜萝卜各有所爱，关于nginx和apache的对比自己google去。</p>
+</blockquote>
+<h4 id="问题3：图中，一台阿里云ECS只部署一个Tomcat服务么？">问题3：图中，一台阿里云ECS只部署一个Tomcat服务么？</h4><blockquote>
+<p>没错。这里没有统一的解决方案，你可以选择在一台服务器上开多个Tomcat端口，而对我来说一台服务器一个Tomcat配置更精简，再说这台ECS挂了也不至于一个集群挂了，有钱任性！</p>
+</blockquote>
+<h4 id="问题4：Spring_Session的应用效果如何？">问题4：Spring Session的应用效果如何？</h4><blockquote>
+<p>互联网技术架构很难不涉及到分布式，关于session共享的技术方案是必须要考虑的，它需要一套完整的session框架来做这件事。<a href="https://github.com/spring-projects/spring-session" target="_blank" rel="external">Spring Session</a>提供了一套分布式Session的解决方案，默认采用的是redis来管理session（目前最新的版本已经支持DB、redis、mongodb、gemfire等方式存储管理session）。</p>
+<p>老夫实战过程中，Spring Session的Cookie和Header方案搭配使用，session存储阿里云redis，目前没有遇到任何障碍。</p>
+</blockquote>
+<h4 id="问题5：Swagger是什么鬼？">问题5：Swagger是什么鬼？</h4><blockquote>
+<p>如果你涉及到APP的开发，一定涉及API管理与文档的书写，<a href="http://swagger.io/" target="_blank" rel="external">Swagger</a>是一个方便管理项目中API接口的框架。如果服务端开发同学，想更好的管理API文档，不妨尝试下Swagger，你一定会爱上它的。<br>哦，对了，忘记告诉你，老夫其实用的是<a href="https://github.com/springfox/springfox" target="_blank" rel="external">Springfox</a>-一个基于SwaggerUI的库。</p>
+</blockquote>
+<h4 id="问题6：如何评估阿里云redis、OSS、MQ？">问题6：如何评估阿里云redis、OSS、MQ？</h4><blockquote>
+<p>在分布式session的解决方案中，session的最优存储位置是redis，如果前期用户量少，甚至可以存储在数据库中，<a href="http://www.infoq.com/cn/news/2015/01/memcached-store-session/" target="_blank" rel="external">不建议维护在memcached中</a>。初创型公司，不建议自己维护一套redis的集群环境，成本略高。所以，如果能使用阿里云的服务，就使用之。</p>
+<p>关于阿里云的对象存储OSS，它应该出自淘系内部的TFS，搭配阿里云CDN使用效果是毋庸置疑的。而我们基本上用到最多的就是图片、css、js的存储，这块业界有很多免费也较稳定的存储，初创企业老夫更倾向于七牛云存储。相比OSS，免费额度高，文档较完善，基本上需要的支持都有，比如图片压缩、水印、语音视频分片等。</p>
+<p>MQ，消息队列服务。老夫其实没用，因为我用<a href="http://projectreactor.io/" target="_blank" rel="external">Reactor</a>取代了，至少对于我目前的业务是可以满足的，不过分布式消息队列的重要性毋庸置疑，初创企业自己运维不及直接使用有优势。</p>
+</blockquote>
+<h3 id="业务量上来后，怎么玩？">业务量上来后，怎么玩？</h3><p>先呵呵一下，再放一图，各位看官欢迎楼下PK</p>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2GutxmXXXXXcCXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>老夫深深的吸一口烟，缓缓吐出一团云圈，心中嘀咕一下:支撑的业务可以赶上淘宝了……</p>
+<p>友情告知：以上使用阿里云的服务，可以在公司的不同阶段，自行替换为开源实现or自行实现和运维。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>创业公司，觉得很重要的一点，是快速的以市场行动去验证业务方向的可行性。对于在创业公司的技术团队，一支作为服务支撑的团队，应该遵循的设计原则是：</p>
+<ul>
+<li>业务驱动</li>
+<li>横向扩展</li>
+<li>互联网通用技术</li>
+</ul>
+<p>在此前提下，老夫基于阿里云服务实践（是实践不是YY）了一套技术架构方案，如果你不幸步行于此，希望下图没有坑害到你。</p>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2O4g6lVXXXXc6XXXXXXXXXXXX-102975691.jpg" alt=""><br>]]>
+    
+    </summary>
+    
+      <category term="创业公司" scheme="http://blog.12xiaoshi.com/tags/%E5%88%9B%E4%B8%9A%E5%85%AC%E5%8F%B8/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="架构设计" scheme="http://blog.12xiaoshi.com/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="阿里云" scheme="http://blog.12xiaoshi.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[10个很棒的jQuery和HTML所见即所得编辑器插件]]></title>
+    <link href="http://blog.12xiaoshi.com/2016/03/12/tech/markdown_editor/"/>
+    <id>http://blog.12xiaoshi.com/2016/03/12/tech/markdown_editor/</id>
+    <published>2016-03-11T17:35:01.000Z</published>
+    <updated>2016-03-30T03:36:57.783Z</updated>
+    <content type="html"><![CDATA[<p>HTML5 所见即所得 WYSIWYG (What You See Is What You Get) 编辑器的需求量是非常大的。但是现在有太多这样的编辑器了，想要从其中找到一个合适的并不容易。今天这篇文章为大家分享 10 个我认为是十分棒的所见即所得插件，应该有适合你的需求并能节省你时间的。</p>
+<blockquote>
+<p><a href="https://www.froala.com/wysiwyg-editor" target="_blank" rel="external">Froala</a></p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2dCM2lVXXXXcGXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Froala 所见即所得 HTML 编辑器非常易于整合和使用。它几乎不需要你掌握任何代码知识。它需要 jQuery 1.11.0 或者更高版本、以及 Font Awesome 4.4.0 字体图标的支持。除了整合的 UX 以及 UI 外，还提供了很好的 XSS 攻击保护。</p>
+<h4 id="特点：">特点：</h4><ul>
+<li>文件压缩后 34K</li>
+<li>行内编辑</li>
+<li>支持键盘快捷键</li>
+<li>要求基本的 HTML 和 JavaScript 知识</li>
+<li>深浅两种主题</li>
+<li>对移动端做了优化</li>
+<li>支持Word</li>
+<li>34 种语言支持以及 RTL(Right to Left) 从右向左支持<a id="more"></a>
+<blockquote>
+<p><a href="http://getcontenttools.com/" target="_blank" rel="external">ContentTools</a></p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://img.alicdn.com/imgextra/i1/102975691/TB2qe0cmXXXXXaJXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>ContentTools 是一个小而美的内容编辑器。该库不需要任何 JavaScript 框架或库的支持(包括 jQuery)，但是却表现很好。ContentTools 包由 5 个库组成，每一个都可以单独使用，并且该插件易于扩展。</p>
+<h4 id="特点：-1">特点：</h4><ul>
+<li>压缩后 49 KB</li>
+<li>行内编辑</li>
+<li>可以调整图片和视频大小</li>
+<li>支持 撤销/重做 (undo/redo)</li>
+</ul>
+<blockquote>
+<p><a href="https://www.raptor-editor.com/" target="_blank" rel="external">Raptor Editor</a></p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2M98amXXXXXaSXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Raptor Editor 是一个开源的 JavaScript 所见即所得 HTML 编辑器，对用户友好，易于集成和定制。它为行内编辑而设计，是复杂的多块布局的理想选择。它所用最新的技术如 HTML5 ContentEditable 及 jQuery ，特性有内置单元测试、模块化、可扩展及插件 API。</p>
+<h4 id="特点：-2">特点：</h4><ul>
+<li>支持行内编辑</li>
+<li>灵活的对接选项</li>
+<li>可定制的主题</li>
+<li>良好的文档</li>
+</ul>
+<blockquote>
+<p><a href="http://www.alohaeditor.org/Content.Node/index.html" target="_blank" rel="external">Aloha</a></p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2Fk._lVXXXXbyXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Aloha 是一个多功能的内容编辑库。它允许在你的 WEB 应用中无缝的嵌入编辑。主要缺点是不支持图片插入。</p>
+<h4 id="特点：-3">特点：</h4><ul>
+<li>142 KB</li>
+<li>支持WORD</li>
+<li>跨浏览器兼容</li>
+<li>易于定制</li>
+</ul>
+<blockquote>
+<p><a href="https://www.tinymce.com/" target="_blank" rel="external">TinyMCE</a></p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2N2RqmXXXXXXgXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>TinyMCE是一个基于 WEB 的独立的JavaScript的HTML所见即所得平台。它允许你把 HTML textarea 字段或其他元素转化为编辑器实例。它遵循 WAI-ARIA  规范，使得它适用于屏幕阅读器如JAWS 和 NVDA。它还有一个你可以得到优先支持的企业方案。</p>
+<h4 id="特点：-4">特点：</h4><ul>
+<li>实时媒体嵌入</li>
+<li>内置图像编辑</li>
+<li>拼写检查（企业版）</li>
+<li>支持WORD</li>
+<li>40+ 语言支持</li>
+<li>跨浏览器</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg" target="_blank" rel="external">Bootstrap3-wysiwyg</a><br><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2U1k5lVXXXXb1XXXXXXXXXXXX-102975691.jpg" alt=""></p>
+</blockquote>
+<p>Bootstrap3-wysiwyg 是一个 JavaScript 插件，由于使用 wysihtml5 及 BootStrap ，使得它是一个易用使用且漂亮的所见即所得编辑器。</p>
+<h4 id="特点：-5">特点：</h4><ul>
+<li>压缩后 206 KB</li>
+<li>支持 RequireJS</li>
+<li>可自定义工具栏模版和主题</li>
+<li>提供事件如 load 和 blur 。<blockquote>
+<p><a href="http://summernote.org/" target="_blank" rel="external">Summernote</a></p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://img.alicdn.com/imgextra/i1/102975691/TB2CU3ylVXXXXcmXpXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Summernote 是一个基于  Bootstrap 的文本编辑器，提供了各种不同的主题供选择。也有一个  Material 版本的主题，叫做 MaterialNote。</p>
+<h4 id="特点：-6">特点：</h4><ul>
+<li>JS+CSS 共 80 KB</li>
+<li>支持 Bootstrap 3.x.x</li>
+<li>容易迁移到  Django, Rails 或 Angular</li>
+<li>易于定制</li>
+<li>CodeMirror 一体化<blockquote>
+<p><a href="http://ckeditor.com/" target="_blank" rel="external">CKEditor</a><br><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2DxgIlVXXXXbvXpXXXXXXXXXX-102975691.jpg" alt=""></p>
+</blockquote>
+</li>
+</ul>
+<p>CKEditor 是一个好用的 HTML 编辑器，专为简化 WEB 内容创作而设计。它把普通的文字处理工作直接带到 WEB 页面来实现。</p>
+<h4 id="特点：-7">特点：</h4><ul>
+<li>使用 CKBuilder 定制而来</li>
+<li>支持 WORD</li>
+<li>行内编辑</li>
+<li>撤消/重做支持</li>
+<li>RTL(右到左)支持</li>
+<li>支持 60 多种语言<blockquote>
+<p><a href="http://alex-d.github.io/Trumbowyg/" target="_blank" rel="external">Trumbowyg</a><br><img src="https://img.alicdn.com/imgextra/i1/102975691/TB26fgKlVXXXXbmXpXXXXXXXXXX-102975691.jpg" alt=""></p>
+</blockquote>
+</li>
+</ul>
+<p>Trusmbowyg 是这里列出的编辑器中最轻便的。所有其他所见即所得编辑器都大于 45 KB，而 Trumbowyg 只有 16 KB。它要求 jQuery &gt;= 1.7。</p>
+<h4 id="特点：-8">特点：</h4><ul>
+<li>只有 16KB</li>
+<li>30 多种语言支持</li>
+</ul>
+<blockquote>
+<p>Redactor</p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i2/102975691/TB2KwE7lVXXXXbXXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Redactor 是一个快速、强大、可扩展的编辑器，它已经存在了差不多 7 年了，并且还在不断开发。它会自动把图片上传到 Amazon S3。</p>
+<h4 id="特点：-9">特点：</h4><ul>
+<li>压缩后 75KB</li>
+<li>行内编辑</li>
+<li>支持 CodeMirror</li>
+<li>图片拖放功能</li>
+<li>由于该编辑器是基于插件的，所以很容易定制<h3 id="总结">总结</h3></li>
+</ul>
+<p>这篇文章中为你展示了 10 个我认为是最棒的 jQuery 和 HTML 所见即所得编辑器插件，我希望这个列表在你需要为你的项目选择文本编辑器的时候有所帮助，希望有一款能够节省你寻找的时间并且适合你的需求。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>HTML5 所见即所得 WYSIWYG (What You See Is What You Get) 编辑器的需求量是非常大的。但是现在有太多这样的编辑器了，想要从其中找到一个合适的并不容易。今天这篇文章为大家分享 10 个我认为是十分棒的所见即所得插件，应该有适合你的需求并能节省你时间的。</p>
+<blockquote>
+<p><a href="https://www.froala.com/wysiwyg-editor">Froala</a></p>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2dCM2lVXXXXcGXXXXXXXXXXXX-102975691.jpg" alt=""></p>
+<p>Froala 所见即所得 HTML 编辑器非常易于整合和使用。它几乎不需要你掌握任何代码知识。它需要 jQuery 1.11.0 或者更高版本、以及 Font Awesome 4.4.0 字体图标的支持。除了整合的 UX 以及 UI 外，还提供了很好的 XSS 攻击保护。</p>
+<h4 id="特点：">特点：</h4><ul>
+<li>文件压缩后 34K</li>
+<li>行内编辑</li>
+<li>支持键盘快捷键</li>
+<li>要求基本的 HTML 和 JavaScript 知识</li>
+<li>深浅两种主题</li>
+<li>对移动端做了优化</li>
+<li>支持Word</li>
+<li>34 种语言支持以及 RTL(Right to Left) 从右向左支持]]>
+    
+    </summary>
+    
+      <category term="jquery" scheme="http://blog.12xiaoshi.com/tags/jquery/"/>
+    
+      <category term="富文本编辑器" scheme="http://blog.12xiaoshi.com/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="编辑器" scheme="http://blog.12xiaoshi.com/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[初探“十三行”服装批发市场]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/09/19/life/c2m_02/"/>
+    <id>http://blog.12xiaoshi.com/2015/09/19/life/c2m_02/</id>
+    <published>2015-09-19T15:35:34.000Z</published>
+    <updated>2015-09-19T16:40:56.222Z</updated>
+    <content type="html"><![CDATA[<h3 id="篇前语">篇前语</h3><p>这是《中国服装行业现状与困境》的第二篇，上一篇见“<a href="http://blog.12xiaoshi.com/2015/09/18/life/c2m/">亟待解决的工厂生命之源</a>”，承蒙大家厚爱，让一介码农瞬间成为一线记者，瞬间有种拍美剧大片的感觉，:-D。但，不管如何，笔者任然希望以第一视角的身份，与大家一起见证一个最真实的服装行业，笔者深信，那些所谓行业专家构想都是虚的，停留在拍脑袋的决定都是愚蠢的，深入一线才是我们要寻找的答案。</p>
+<h3 id="十三行">十三行</h3><p>无可否认，笔者在没来之前，完全没有听过广州十三行，相信很多行业外的朋友跟笔者一样。因此笔者在去之前特地百度了下，摘录一段（如果你之前有过了解，不妨再深入了解下，之所以摘录这段是因为它确如笔者所见所闻）:<br><a id="more"></a></p>
+<blockquote>
+<ul>
+<li><p>位于广州市荔湾区十三行路，熟悉的人一般简称为“十三行”。如今的十三行仍然全国最大的服装批发中心。批发零售均可，以十三行路为中心，故衣街、十三行豆栏上街、和平东路服装商场环绕成的物流商业圈，已成为广州历史最长的服装批发集散地。这里每天进出货物数千吨，人流量达数十万人次，商业辐射全国各地、俄罗斯以及东南亚地区。</p>
+</li>
+<li><p>十三行商圈主要由新中国大厦和红遍天大厦构成。“新中国”的一楼到三楼的零售批发商铺每天早上六点半就开门做生意，四楼以上的大户则八点开门。“红遍天”一二楼也是零售批发兼做的商铺，一般也在早上六点半开门，三楼以上的写字楼生意较稳定，主要是向全国的批发大户承接“打包”生意，很少做零售，大多在七点半后才开门。</p>
+</li>
+</ul>
+<!--more-->
+<ul>
+<li><p>十三行服装批发市场中低档服装批发为主，其中新中国大厦写字楼的服装中高档，批发档口以中档为多。红遍天服装批发市场，豆栏街等周边批发市场多以低档为主。</p>
+</li>
+<li><p>每年八九月，都是十三行最旺的时段，一到换季，全国各地的服装批发商都到这里拿衣服，秋冬服装如今也已挂满了大小档口。从皮衣、针织、毛衣、套装、衬衣、牛仔系列等应有尽有，琳琅满目。在“新中国”和“红遍天”两座大厦间有条长约400米左右的路段，全部堆满了如山的货物，都是用编织袋或纸皮箱打包好的货物，等待发货。在“红遍天”和“新中国”大厦之间有一排写着全国各地城市名字的发货点，堪比省汽车站的发车处，分有省内、上海、杭州、山东、北京、石家庄、内蒙古等多个方向，还分空运和陆运等不同运输方式。在这个发货点附近，还形成了“红遍天”货运配载城等物流中心，专门做服装批发生意。</p>
+</li>
+<li><p>十三行以卖20~30元的货色为主，在全世界的中国制造里面，凡是能用七八十元人民币买到的衣服，几乎都能在这里找到。时装杂志里最兴的蓝色，已经取代了曾经大热的白衬衣在十三行全面开花，每个档口都有一两件“克莱因蓝”或“姣婆蓝”坐镇；当北京动物园廉价时装街的批发商纷纷挂出了平价的窝钉系列，京沪甚至韩国首尔街头出现“窝钉党”和“蓝衣党”时，制作出这些流行款式的广州人还在奋战35度高温。</p>
+</li>
+<li><p>十三行每天对外发货达三四千吨，只要两三天时间就能提供最新货色，一万多名时装从业者正日夜为全世界草根衣橱换季而奋战。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i2/102975691/TB2kufdfpXXXXcpXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<center>（“新中国”深夜踩点）</center>
+
+<h3 id="出发">出发</h3><p>昨日的疲倦并没有影响笔者和同事们的探索行程，一早便来到了十三行商圈，uber肯定是开不进来的，8点钟的人民南路早就堵成狗了。当然，下车后也不用地图导航，跟着小推车（是叫小推车？）的人流走就对了。很快，就来到了“红遍天”，构成十三行商圈之一的建筑。</p>
+<p><img src="https://img.alicdn.com/imgextra/i1/102975691/TB2J32efpXXXXcEXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""><br><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2A7a2fpXXXXbDXpXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<center>（“红遍天”，抢镜者无需马赛克，:-D）</center>
+
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB25_e7fpXXXXarXpXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<center>（各种物流）</center>
+
+<p>笔者并没有进入“红遍天”内部，选择以“新中国”大厦作为第一站。</p>
+<h3 id="“新中国”的“明察暗访”">“新中国”的“明察暗访”</h3><p>行程很明确，进入“新中国”大厦，先熟悉各楼层主要批发品类、平均批发价格、人流量，再随机对拿货的商家进行访问交流。</p>
+<p>笔前，先要感谢各位接受笔者和同事们无尽问题的各位拿货人，虽然你们中有些人头也不回的走了，但你们的答案和行为对笔者都具有重大意义。另外要感谢一直在背后跟（tou）拍的某同学，你老辛苦了，但愿有朝一日能整理个纪录片，与全球人分享。</p>
+<p>进入“新中国”大厦，笔者是一愣一愣的，90%以上的人群是靓女，她们上可以<strong>能说会道指点江山</strong>，下可以<strong>当众换衣不觉尴尬</strong>。不仅如此，她们掌控着女性服装的时尚潮流，你今天能穿到的抑或流行的款，都是她们独到的眼光选出来的，她们是女性服装时尚的操控者。</p>
+<p>为什么笔者一直说崇拜这群广州的靓女，相比江浙沪的娇弱（绝无地域歧视，不服来战），她们自力更生，豪放大气。</p>
+<p>而仅剩的不足10%的靓仔，都是“苦力工”，备货、打包、发货、运输！作为一个男人，笔者深深的觉得在这里混不下去了……</p>
+<p>在熟悉了<a href="http://blog.12xiaoshi.com/2015/09/18/life/newchina_intro/">‘新中国’大厦各楼层的经营情况</a>（建议各位先看看这个）后，笔者与同事随机对几位拿货人进行了采访，依照时间顺序我定义为A、B、C、D、E（由于采访的人太多，不一定都能对上，但收集的信息一定是覆盖的）。</p>
+<h4 id="小A">小A</h4><p>小A是两位来自四川的靓女，中途坐推拉车上休息，被笔者逮住（淹没在靓女人海中的笔者，发现只有这些休息的妹子才有空隙与你闲聊，而且美女一般不会拒绝你。哎，这是笔者被拒绝N次得出来的经验）。</p>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB226i4fpXXXXb1XpXXXXXXXXXX-102975691.jpg" alt=""></p>
+<blockquote>
+<p>笔者：美女你们好，你们是来拿货的吗？能问几个问题吗？</p>
+<p>答：是，什么问题？</p>
+<p>笔者：你们拿的这些货，最后是放线上卖，还是线下实体店卖？</p>
+<p>答：我们是实体店。</p>
+<p>笔者：不做淘宝或者天猫吗？</p>
+<p>答：不做。</p>
+<p>笔者：你们多久来十三行一次？</p>
+<p>答：差不多一周来一次，至少也会一个月来三次。</p>
+<p>笔者：你们哪里的？（笔者其实不愿意一下子就问这么隐私的问题，但这对笔者很重要呀）</p>
+<p>答：我们四川的。（惊呆了，美女完全没有防备，豪爽的让笔者不相信呀，中西部的妹子豪爽果然不是吹的）</p>
+<p>笔者：那你们每次来回不是很辛苦？（先套近乎）</p>
+<p>答：是啊，每次来回大概3天时间。（心疼死笔者了，一个月要耗费7-9天时间在路上）</p>
+<p>笔者：每次拿货很多吗？</p>
+<p>答：还行吧，一般在10W左右，前段时间可能少一点，有时5-6W，几千的也有。（额，笔者脑子转了很久，夏装要便宜不少）</p>
+<p>笔者：你们有固定档口拿货吗？</p>
+<p>答：不会，我们只看款，感觉不错就会下单，没有固定档口。</p>
+<p>笔者：全凭你们俩感觉？</p>
+<p>两美女相视一笑，是对问题的肯定，也是对自己的眼光的肯定。</p>
+<p>笔者：会去1688之类的网上拿货吗？</p>
+<p>答：没有过。</p>
+<p>笔者：为什么？</p>
+<p>答：图片呀，看不到。</p>
+</blockquote>
+<p>够实在的回答，笔者第一次访谈，有点紧张，匆匆双手合十表示感谢，下电梯了。哎呀妈呀，摄（tou）影(pai)师提醒我，怎么可以连微信号这么关键的问题都忘了，再次坐上电梯，发现妹子已消失在人群中。<strong>哎，错过，就是一生</strong>。</p>
+<h4 id="小B">小B</h4><p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB26ELhfpXXXXcOXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<p>其实，问题与小A的问题差不多，这位来着广东的靓妹不是很配合，但依稀的收集到这些信息：进货销售到线下实体店和淘宝店，每天都会来十三行一次，广州本地人，单次进货不多。</p>
+<h4 id="小C">小C</h4><p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2cUO7fpXXXXasXpXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<p>小C是笔者和pig同事一起访问的，认识到她是一个专门为线下实体店选款的买手，通过在十三行选中自己喜欢的款，然后通过微信等渠道发布信息，其他实体店或者淘宝店主在她这里进货。眼光，就是资本！</p>
+<h4 id="小D">小D</h4><p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2yq94fpXXXXa6XpXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<p>小D是两位来自湖南的妹陀，做连锁，不做自己品牌，线下60家店（来这里拿货的都是很牛逼的人），不做线上，每个月至少来一次十三行，进货只看款。对线上进货表示极度的兴趣，但非常重视第一手款是否会流向普通消费者。</p>
+<h4 id="小E">小E</h4><p>小E是一位来自西北的批发商，她们做的量非常大，西北片区的货大部分是她们从十三行进回去，然后从她们这里二次批发的。类似杭州四季青里面的大批发商。</p>
+<h3 id="总结">总结</h3><p>一个上午，笔者和小伙伴们走访了新中国大厦以及周边服装批发圈，访问了形形色色的拿货人，稍微做下总结：</p>
+<ul>
+<li>来十三行拿货的人群各式各样，有大型批发商，有线下实体店主，有淘宝店主，也有网络红人等，总体以偏传统的线下实体店为主。（在拜访的人群中，做线上的很少，阿里巴巴到底解决了“让天下没有难做的生意”吗？）</li>
+<li>进到的货，零售的价格基本都是400元以下款；</li>
+<li>新款对这些进货者至关重要，但不排斥通过互联网方式进货，关键在于是不是第一手；</li>
+<li>品牌的概念在十三行无关重要，这些提货者要么自己回家贴牌，要么直接进行零售；</li>
+<li>其他二三线城市，甚至像北京动物园、杭州四季青等大型档口，从十三行拿货的人也不少；</li>
+<li>这里是女人的天下。</li>
+</ul>
+<p>夜已深，惊闻上海慕和网络CEO吴波去世，意识到健康的重要性，笔者也打算睡去，敬请期待下一篇，愿逝者一路走好。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="篇前语">篇前语</h3><p>这是《中国服装行业现状与困境》的第二篇，上一篇见“<a href="http://blog.12xiaoshi.com/2015/09/18/life/c2m/">亟待解决的工厂生命之源</a>”，承蒙大家厚爱，让一介码农瞬间成为一线记者，瞬间有种拍美剧大片的感觉，:-D。但，不管如何，笔者任然希望以第一视角的身份，与大家一起见证一个最真实的服装行业，笔者深信，那些所谓行业专家构想都是虚的，停留在拍脑袋的决定都是愚蠢的，深入一线才是我们要寻找的答案。</p>
+<h3 id="十三行">十三行</h3><p>无可否认，笔者在没来之前，完全没有听过广州十三行，相信很多行业外的朋友跟笔者一样。因此笔者在去之前特地百度了下，摘录一段（如果你之前有过了解，不妨再深入了解下，之所以摘录这段是因为它确如笔者所见所闻）:<br>]]>
+    
+    </summary>
+    
+      <category term="C2M" scheme="http://blog.12xiaoshi.com/tags/C2M/"/>
+    
+      <category term="中国制造" scheme="http://blog.12xiaoshi.com/tags/%E4%B8%AD%E5%9B%BD%E5%88%B6%E9%80%A0/"/>
+    
+      <category term="你造么" scheme="http://blog.12xiaoshi.com/tags/%E4%BD%A0%E9%80%A0%E4%B9%88/"/>
+    
+      <category term="十三行" scheme="http://blog.12xiaoshi.com/tags/%E5%8D%81%E4%B8%89%E8%A1%8C/"/>
+    
+      <category term="广州服装批发市场" scheme="http://blog.12xiaoshi.com/tags/%E5%B9%BF%E5%B7%9E%E6%9C%8D%E8%A3%85%E6%89%B9%E5%8F%91%E5%B8%82%E5%9C%BA/"/>
+    
+      <category term="新中国大厦" scheme="http://blog.12xiaoshi.com/tags/%E6%96%B0%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%8E%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[广州十三行新中国大厦各楼层服装批发货源详细解说]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/09/18/life/newchina_intro/"/>
+    <id>http://blog.12xiaoshi.com/2015/09/18/life/newchina_intro/</id>
+    <published>2015-09-18T03:54:01.000Z</published>
+    <updated>2015-09-19T13:36:48.227Z</updated>
+    <content type="html"><![CDATA[<p>广州十三行新中国大厦服装批发各楼层货源：</p>
+<p>　　1楼是散档口，一个档口只有2-10个平方，厂家一般只挂5-10个款，主要做单品，就是做T的专门做T, 做裙子的专门做裙子。在进货价格一般在 20-60之间，基本超过60的相当少了。主要做中低档杂志款，时尚流行的款式，呵呵，说的确切点就是以抄版 为主。网络上流行什么，杂志款流行什么，他们就做什么。更新特别快。主要以跑量为主。 但做工非常一般，亲们要注意哦。～1楼右侧 有几十个档口主要做饰品，腰带，鞋，配饰等。这里有部分虽然不是厂家，但一般少量拿一些搭配用，价格还是很合理的。<br><a id="more"></a><br>　　2楼也是散档口，面积跟一楼差不多，档次和风格都差不多，一般进货从一楼直接往上走，就没错了。2楼右手边有几十个档口是做包包批发的哦，都是当季的最新款，价格也不高，拿货价在30-80之间。呵呵，有的质量还不错哦。值得亲们注意的是二楼有一个C区是专门做裤子的，休闲裤，牛仔裤批发，价格在20-50之间。要拿便宜裤子的亲们，要记住哦。十三行不像白马，成风格和体系，这里很多家只做单品，需要跑很多家才能找到自己的货源～～</p>
+<p>　　3楼也是散档口跟一楼二楼 都差不多，不过三楼比较杂，建议拿时尚型的亲可以在一楼二楼 。</p>
+<p>　　4楼主要是写字楼，要比1-3楼档次高一些，档口面积和开销也大一些，呵呵，当然衣服也要贵一些哦！不过木木一直认为四楼很杂，没有具体风格，这里拿货价在35-80之间。有几家是专门做帽子的还不错，其它 确实没有值得推荐的地方哦。</p>
+<p>　　5楼主要是写字楼，重点介绍一下，做牛仔裤的亲们要注意了！五楼基本上都是做牛仔裤的厂家，中档牛仔裤，现在慢慢也偏向中高档了，拿货价在50-130哦，去年的时候我记得还有50多价位的。这里亲可以货比三家，根据自己的风格和价位来挑选哦，不过有点麻烦的是，牛仔裤码数太多，压货量是可想而知的。建议亲们要理性对待，看准了再下手。</p>
+<p>　　6楼主要是写字楼，连衣裙批发，T这些全部都有，档次比1-3楼要高，拿货价在40-100之间了。今年的连衣裙一般都在60-95之间了，6楼也有一些韩国人的档口哦，虽然价格偏高一点，但做工都不错的。亲们可以好好转转。韩国档口的款式，一般都是韩国流行的款式，很不错。</p>
+<p>　　7楼主要是写字楼，各类产品都有，档次跟六楼差不多，价格和风格都差不多。</p>
+<p>　　8楼，9楼，10楼主要是写字楼，重点介绍，呵呵，这一层也是我们跑的最多的地方，因为3层聚集了十三行最优质的供应商。当然这三层的房租也是十三行最贵的。人流量 也是最大的。这几层款式更新很快。属于正宗的中高档女装。质量都不错。风格都是少女型 ，少妇型都有。这个没有分明显的区，需要自己找。不过现在拿货价也都在50-120之间。白马有很多厂家都是来这几层抄货的。款式更新快，价格比白马要便宜一半，也正是看中这一利益。这三层中，有香港老板，台湾老板，韩国老板，也有内地的。呵呵，想想吧，亲，这三个地方的人可都是对质量要求严格的哦。样版很多都是从他们当地发过来的，所以款式更新特别快，紧跟潮流。</p>
+<p>　　11楼，12楼 是有一些不错的厂家，亲有时间的话，不防上来看看。价格比8-9-10要低一些。是呢，人越是多，生意越好，房租也就越贵，这都是成正比的。但跟款式和质量也是离不开的哦。</p>
+<p>　　13楼是防空层，呵呵，如果步行走楼梯的话，要注意哦，有个隔层直接上14层。</p>
+<p>　　14-15-16-17-18-19-20这些楼层，主要是跑大量的。款式更新相对慢一些。新手卖家不建议去上面拿货。风格偏土气一点，如果做这一类型的亲可以上去看看的。但也有一些偏时尚的厂家的，要慢慢找。裤子，T,裙子也都有。我们上去的较少，不过亲有兴趣可以去看看。当然这上面也比较冷清，因为一般厂家在全国都有代理商，只用发货就行了，在档口不销售的。当然上面的房租要比下面便宜一倍多呢。所以衣服也便宜一些。想做便宜货的亲们，不防来看看。</p>
+<p>　　广州十三行新中国大厦这20层的基本情况就是这样，亲们可以仔细看一看，如果都清楚了，我想，你就不会再想无头苍蝇一样，一进市场就疯狂拿货了。这样，你可以根据自己的定位和风格，找准自己想要的货源再下手。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>广州十三行新中国大厦服装批发各楼层货源：</p>
+<p>　　1楼是散档口，一个档口只有2-10个平方，厂家一般只挂5-10个款，主要做单品，就是做T的专门做T, 做裙子的专门做裙子。在进货价格一般在 20-60之间，基本超过60的相当少了。主要做中低档杂志款，时尚流行的款式，呵呵，说的确切点就是以抄版 为主。网络上流行什么，杂志款流行什么，他们就做什么。更新特别快。主要以跑量为主。 但做工非常一般，亲们要注意哦。～1楼右侧 有几十个档口主要做饰品，腰带，鞋，配饰等。这里有部分虽然不是厂家，但一般少量拿一些搭配用，价格还是很合理的。<br>]]>
+    
+    </summary>
+    
+      <category term="中国制造" scheme="http://blog.12xiaoshi.com/tags/%E4%B8%AD%E5%9B%BD%E5%88%B6%E9%80%A0/"/>
+    
+      <category term="十三行，批发楼层说明" scheme="http://blog.12xiaoshi.com/tags/%E5%8D%81%E4%B8%89%E8%A1%8C%EF%BC%8C%E6%89%B9%E5%8F%91%E6%A5%BC%E5%B1%82%E8%AF%B4%E6%98%8E/"/>
+    
+      <category term="广州服装批发市场" scheme="http://blog.12xiaoshi.com/tags/%E5%B9%BF%E5%B7%9E%E6%9C%8D%E8%A3%85%E6%89%B9%E5%8F%91%E5%B8%82%E5%9C%BA/"/>
+    
+      <category term="新中国大厦" scheme="http://blog.12xiaoshi.com/tags/%E6%96%B0%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%8E%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[中国服装行业现状与困境（一）]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/09/18/life/c2m/"/>
+    <id>http://blog.12xiaoshi.com/2015/09/18/life/c2m/</id>
+    <published>2015-09-17T21:35:01.000Z</published>
+    <updated>2015-09-19T05:10:30.691Z</updated>
+    <content type="html"><![CDATA[<h3 id="写之前">写之前</h3><p>2015年9月16日凌晨5点，迎着杭州秋意渐浓的寒风，笔者与同事们踏上了南下的飞机，前往这个传说中最大的服装生产基地，中国的南大门——广州，进行了紧促而又意义的2天探索之旅。过程是疲惫的，但，心是震撼的，感情是复杂的。</p>
+<p>震撼的内心让一个从未接触该行业的人久久不能平息，托着疲倦的身体下了飞机，回到家里，打开最爱的<code>DELL XPS13</code>，以码代码的速度，在<code>Markdown</code>中码起了这篇文章。笔者分享的目的，是希望自己亲身的经历，能让你有所收获，甚至感同身受。</p>
+<p>不仅如此，笔者更希望看到的是，能诞生一种新的互联网平台来驱动中国的服装制造业，重塑电商新模式。</p>
+<a id="more"></a>
+<h3 id="特别声明">特别声明</h3><blockquote>
+<ul>
+<li>这是一篇笔者的亲身经历与感悟，不代表任何个人或公司观点；</li>
+<li>笔者乃一介码农，非业界大师，无法指点江山，文章全凭个人经历与感悟，若你对文中观点有任何异议或者有自己想法，欢迎指教；</li>
+<li>文中若有伤到友商或朋友，请及时联系笔者，笔者在原则内可做适当修改；</li>
+<li>本文谢绝不留名的转载，否则写代码诅咒你。</li>
+</ul>
+</blockquote>
+<p><strong>为了方便阅读，笔者按照拜访的时间，将文章分成了几个部分：亟待解决的工厂生命之源、从“新中国十三行”看服装批发市场、档口老板娘的生存经验、一种新的互联网平台模式的思考。</strong></p>
+<h3 id="亟待解决的工厂生命之源"><center>亟待解决的工厂生命之源</center></h3><p>笔者此行安排了多家工厂，他们不是国际大厂，都属于中小型工厂，笔者定义<strong>中小型工厂的标准是工厂单天独立生产能力不高于5000件</strong>（当然，这个肯定不是说简单易做的T恤）。根据实际拜访结果，笔者挑选其中四家具有代表性的工厂，与各位分享，暂且分别定义其为<code>A</code>、<code>B</code>、<code>C</code>、<code>D</code>。</p>
+<p><em><code>TIPS</code>：深入了解工厂之前，建议先阅读下“<a href="http://bbs.paidai.com/topic/82153" target="_blank" rel="external">服装制作之衣衣诞生记 爆服装生产全过程（图解）</a>”这篇文章，这样你就不会一头雾水</em>。</p>
+<h4 id="工厂A，一家与互联网赛跑的工厂">工厂A，一家与互联网赛跑的工厂</h4><p>工厂A，位于白云区，主要生产女装，固有工人50-70人，具有自己的板房、厂房、仓库、模特拍照室以及电商部门，也是笔者接触的唯一一家“什么都做”的工厂。</p>
+<blockquote>
+<ul>
+<li>他们做淘工厂，这是他们约30%的生产订单来源，他们是淘工厂珠三角地区的佼佼者，对淘工厂总体评价还不错；</li>
+<li>他们主要的订单来源来自于线下批发商和零售商，这些订单占据他们出厂订单的60%多；</li>
+<li>他们做天猫，尝试自主品牌的运营之路，但只见烧钱没见产出，自己的爆款设计款也曾被竞争者抄袭而无奈，线上运营经验几乎为0，对空降的运营疯狂直通车表示恐慌，但又不想丢掉天猫这块“肥肉”；</li>
+<li>他们做美丽说，但感觉美丽说到处是坑，他们隐约觉得美丽员工急于上市数据暗示他们进行刷单（但笔者觉得，有那个电商平台没刷单呢）;</li>
+<li>他们也做蘑菇街，给蘑菇街的是好评（笔者真不是蘑菇街的托）；</li>
+<li>他们1年前也做京东，但京东的资金流转太慢，他们选择退出。然，京东押金至今没有退还。话说东哥，奶茶你也喝到了，不求做你的上帝，作为一个普通消费者，真想问：你们的员工能让你做一回真男人么？</li>
+<li>他们也接受到淘宝中国质造的邀请，尝试来中国质造玩一把，他们说，淘宝的中国质造的工厂就是1688的淘工厂旧部，中国质造到底怎么走，也是一头雾水，笔者算是大开眼界。</li>
+</ul>
+</blockquote>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2AkqkfpXXXXa_XpXXXXXXXXXX_!!102975691.jpg_800x800.jpg" alt=""></p>
+<center>(工厂A模特拍照室一角)</center>
+
+<p><img src="https://img.alicdn.com/imgextra/i1/102975691/TB2qvaCfpXXXXamXXXXXXXXXXXX_!!102975691.jpg_800x800.jpg" alt=""></p>
+<center>(工厂A厂房一角)</center>
+
+<p>工厂A是笔者接触的第一家工厂，对于行业的小白来说，瞬间觉得脑子快装不下了，不过这比写代码有趣多了。工厂A曾经也为妖精的口袋之类的淘宝大卖家代工。</p>
+<p>老板，没错，是个女的,年龄目测与笔者相仿（纯属猜测，若猜大了就一笑而过吧，:-D）,低调而具有掌控全局的能力，广州的女人都TM是笔者的偶像（看完该文全部系列就知道笔者为什么这么说了）。</p>
+<p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2B3qIfpXXXXXkXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<center>(工厂A一角与老板娘合影)</center>
+
+<p>业务聊毕，老板娘盛情款待了我们，真是托了“pig同事”的福，哎，一个看脸的时代！<br>工厂附近依然能吃到广州各式特产（话说，吃饭前拿茶水洗碗，再倒进一个专门的盆，笔者给跪了！！算广州特产么？）。</p>
+<h4 id="工厂B，“服装生产基地”中的线上针织专注者">工厂B，“服装生产基地”中的线上针织专注者</h4><p>白云区拜访完毕，笔者和同事们没一刻的停留，来到了海珠区，他们说，这里是一片服装生产的沃土。</p>
+<p><img src="https://img.alicdn.com/imgextra/i2/102975691/TB2QACxfpXXXXbRXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<p>然而这里不是高大明亮的办公厂房和生产环境，也不是政府资金的重点扶持区块，不信笔者带你领略下。</p>
+<p><img src="https://img.alicdn.com/imgextra/i4/102975691/TB2wwWKfpXXXXXgXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""><br><img src="https://img.alicdn.com/imgextra/i1/102975691/TB2pWqCfpXXXXawXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<center>(小巷里三轮车装着面料在人潮中穿梭）</center>
+
+<p>然，笔者拜访的工厂B就位于鹭江西街的一块杂乱区。笔者一路走进来（打uber都开不进来，看照片，:-D），也是着实被这场面给吓到了！直到我们与工厂B的老板（没错，她也是女的，依旧是笔者差不多的年龄，可能更小）交流，才醒悟到我们的肤浅，这是个看脸的时代，这不是看脸的小巷！</p>
+<p>海珠区隶属服装生产历史老区，在这块区域，工厂可以以最快的速度拿到面料、辅料，因为这里有广东地区最高效的面料纺织供应商，即使没有现成的面料，下午下单一个晚上的印染等做工第二天就可以拿来厂房生产。<strong>这块区域已经形成了社会化生产、柔性化供应链甚至于个性化营销于一体的特色生产区</strong>。人群多样性造就了海珠区这带的多样性，也塑造了海珠区服装生产企业的另一番景象。</p>
+<p>所以，工厂B的特点非常明显：</p>
+<blockquote>
+<ul>
+<li>只做淘工厂的订单，很少接线下订单，订单来源几乎全部依赖淘工厂；</li>
+<li>只做针织，不做梭织（关于针织梭织笔者也是学习了半天才明白，想学习的自己百度吧），机器不同，做工过程不同，针织更易对工人更有力；</li>
+<li>工厂不大，工人目测不超过20人，能快速反应，一般1000件以下，3-5天出货；</li>
+<li>不限订单量</li>
+</ul>
+</blockquote>
+<p>BTW，中途得知，工厂门口堆放的库存是网易游戏的T恤。</p>
+<h4 id="工厂C，传统的服装生产工厂">工厂C，传统的服装生产工厂</h4><p><img src="https://img.alicdn.com/imgextra/i3/102975691/TB2qVeIfpXXXXXKXXXXXXXXXXXX-102975691.jpg_800x800.jpg" alt=""></p>
+<p>是的，笔者和同事们马不停蹄的来到番禹区兴业大道这边，拜访了工厂C，一个稍具规模的工厂，目测全部上岗工人在100+（即使现在是服装生产旺季，他们还是有部分工人没有订单可做，处于“休假”状态）。</p>
+<p>该工厂主要订单来源来自大批发商，一般一次可能在500件+，曾为韩都衣舍等代工。也许离市区较远，所以厂房较大，整理的较整齐。由于外贸订单的下滑，工人“休假”在所难免，听完也让笔者一阵凉风吹过，工厂的改革迫在眉睫。</p>
+<h4 id="工厂D，只做代工的工厂">工厂D，只做代工的工厂</h4><p>工厂D是一家纯做加工的工厂，它没有设计师，没有打板师，纯拿订单做苦力，即使有设计稿或图纸，是交给外面的专业打板师傅进行打板设计。</p>
+<h4 id="工厂共同特点">工厂共同特点</h4><p>以上四家工厂，都是各具特点的工厂，这么多工厂拜访下来，笔者总结工厂的共性：</p>
+<blockquote>
+<ol>
+<li>工厂的生命，就是订单，订单量始终是工厂赖以生存的关键；</li>
+<li>中小型工厂基本可以接受的起订量标准就是一条布的量（比如一条布可以生产100件T恤）；</li>
+<li>工厂大部分都是一起合作，订单只怕少不怕多，多订单会分给兄弟工厂一起完成；</li>
+<li>一般的工厂，都具有自己打板的能力，稍具规模的工厂都有自己的设计师，但都极其不愿意自己设计，而更喜欢客户直接拿设计稿或样板来，工厂实现打板；</li>
+<li>工厂打板只是为了订单做附加服务，但打板不一定是工厂的核心，工厂不是非常乐意多次来回修版，其实就好比互联网的产品经理的角色一样；</li>
+<li>工厂最擅长的始终是生产，对于类似电商模式的售后流程，是大多传统工厂不太愿意触碰的，也是他们人力物力目前做不到的；</li>
+<li>大工厂不会理会小订单，大工厂也没时间来理会小订单。</li>
+</ol>
+</blockquote>
+<p>到这里，笔者已深深的体会到中小型工厂的不容易，看似繁华穿梭的人群，确是一种生存的无奈，内心的针扎。</p>
+<p>工厂A在各种网络平台中追随电商的脚本，尝试做先驱，但很有可能成为先烈；<br>工厂B定位只做网络订单，但谁知道拥有浩海资源的阿里巴巴，小小的淘工厂是否能成大器；<br>工厂C、D，传统订单渠道整体下滑，工人们要生活，传统工厂的转型之路到底何去何从。</p>
+<p>不想在首篇就开始大刀阔斧，请与笔者一起，接下一篇，感受新中国十三行的“繁华”。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="写之前">写之前</h3><p>2015年9月16日凌晨5点，迎着杭州秋意渐浓的寒风，笔者与同事们踏上了南下的飞机，前往这个传说中最大的服装生产基地，中国的南大门——广州，进行了紧促而又意义的2天探索之旅。过程是疲惫的，但，心是震撼的，感情是复杂的。</p>
+<p>震撼的内心让一个从未接触该行业的人久久不能平息，托着疲倦的身体下了飞机，回到家里，打开最爱的<code>DELL XPS13</code>，以码代码的速度，在<code>Markdown</code>中码起了这篇文章。笔者分享的目的，是希望自己亲身的经历，能让你有所收获，甚至感同身受。</p>
+<p>不仅如此，笔者更希望看到的是，能诞生一种新的互联网平台来驱动中国的服装制造业，重塑电商新模式。</p>]]>
+    
+    </summary>
+    
+      <category term="C2M" scheme="http://blog.12xiaoshi.com/tags/C2M/"/>
+    
+      <category term="中国制造" scheme="http://blog.12xiaoshi.com/tags/%E4%B8%AD%E5%9B%BD%E5%88%B6%E9%80%A0/"/>
+    
+      <category term="你造么" scheme="http://blog.12xiaoshi.com/tags/%E4%BD%A0%E9%80%A0%E4%B9%88/"/>
+    
+      <category term="十三行" scheme="http://blog.12xiaoshi.com/tags/%E5%8D%81%E4%B8%89%E8%A1%8C/"/>
+    
+      <category term="工厂" scheme="http://blog.12xiaoshi.com/tags/%E5%B7%A5%E5%8E%82/"/>
+    
+      <category term="广州服装" scheme="http://blog.12xiaoshi.com/tags/%E5%B9%BF%E5%B7%9E%E6%9C%8D%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Lazy Load, 延迟加载图片的 jQuery 插件]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/09/04/tech/image_lazy_load/"/>
+    <id>http://blog.12xiaoshi.com/2015/09/04/tech/image_lazy_load/</id>
+    <published>2015-09-03T16:35:01.000Z</published>
+    <updated>2015-09-04T06:28:40.340Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>本文翻译自 <a href="http://www.appelsiini.net/projects/lazyload" title="Lazy Load Plugin for jQuery" target="_blank" rel="external">Lazy Load Plugin for jQuery</a>, 介绍一个 jQuery 插件, 它提供懒汉式加载页面图片的功能.</p>
+</blockquote>
+<p>Lazy Load 是一个用 JavaScript 编写的 jQuery 插件. 它可以延迟加载长页面中的图片. 在浏览器可视区域外的图片不会被载入, 直到用户将页面滚动到它们所在的位置. 这与图片预加载的处理方式正好是相反的.</p>
+<p>在包含很多大图片长页面中延迟加载图片可以加快页面加载速度. 浏览器将会在加载可见图片之后即进入就绪状态. 在某些情况下还可以帮助降低服务器负担.</p>
+<p>Lazy Load 灵感来自 Matt Mlinac 制作的 <a href="http://developer.yahoo.com/yui/imageloader/" target="_blank" rel="external">YUI ImageLoader</a> 工具箱. 这是<a href="http://www.appelsiini.net/projects/lazyload/enabled.html" target="_blank" rel="external">演示页面</a>.</p>
+<blockquote>
+<p>这里有几个可用的 demo 页面提供给那些匆忙的人参考: <a href="http://www.appelsiini.net/projects/lazyload/enabled.html" target="_blank" rel="external">基本选项</a>,<a href="http://www.appelsiini.net/projects/lazyload/enabled_fadein.html" target="_blank" rel="external"> 淡入展示效果</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_noscript.html" target="_blank" rel="external">script 脚本缺失的降级处理</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_wide.html" target="_blank" rel="external">水平滚动</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_wide_container.html" target="_blank" rel="external">容器内水平滚动</a>,<a href="http://www.appelsiini.net/projects/lazyload/enabled_container.html" target="_blank" rel="external"> 容器内垂直滚动</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_gazillion.html" target="_blank" rel="external">页面内存在超多图片</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_timeout.html" target="_blank" rel="external">延时加载图片</a></p>
+<p>查看 demo 中每个请求间浏览器缓存的内容. 你可以通过开发者控制台 (Chrome 和 Safari), Firebug (Firefox) 或者 HTTPHeaders (IE) 检测到实际加载的内容.</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="怎样使用">怎样使用</h3><p>Lazy Load 依赖于 jQuery. 请将下列代码加入页面 <code>head</code> 区域:</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"jquery.js"</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"jquery.lazyload.js"</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>你必须修改 HTML 代码. 在 <code>src</code>属性中设置展位符图片, demo 页面使用 1x1 像素灰色 GIF 图片. 并且需要将真实图片的 URL 设置到 <code>data-original</code> 属性. 这里可以定义特定的 <code>class</code> 以获得需要延迟加载的图片对象. 通过这种方法你可以简单地控制插件绑定.</p>
+<pre><code>&lt;img <span class="variable">class=</span><span class="string">"lazy"</span> <span class="variable">src=</span><span class="string">"img/grey.gif"</span> <span class="variable">data-original=</span><span class="string">"img/example.jpg"</span>  <span class="variable">width=</span><span class="string">"640"</span> <span class="variable">heigh=</span><span class="string">"480"</span>&gt;
+</code></pre><p>处理图片的代码如下.</p>
+<pre><code><span class="variable">$(</span><span class="string">"img.lazy"</span>).lazyload();
+</code></pre><p>这将使所有 <code>class</code> 为 <code>lazy</code> 的图片将被延迟加载. 可以参考基本选项 demo</p>
+<h3 id="设置敏感度">设置敏感度</h3><p>几乎所有浏览器的 JavaScript 都是激活的. 然而可能你仍希望能在不支持 JavaScript 的客户端展示真实图片. 当浏览器不支持 JavaScript 时优雅降级, 你可以将真实的图片片段在写 <code>&lt;noscript&gt;</code>标签内.</p>
+<pre><code>&lt;img <span class="variable">class=</span><span class="string">"lazy"</span> <span class="variable">src=</span><span class="string">"img/grey.gif"</span> <span class="variable">data-original=</span><span class="string">"img/example.jpg"</span>  <span class="variable">width=</span><span class="string">"640"</span> <span class="variable">heigh=</span><span class="string">"480"</span>&gt;
+
+&lt;noscript&gt;&lt;img <span class="variable">src=</span><span class="string">"img/example.jpg"</span> <span class="variable">width=</span><span class="string">"640"</span> <span class="variable">heigh=</span><span class="string">"480"</span>&gt;&lt;/noscript&gt;
+</code></pre><p>可以通过 CSS 隐藏占位符.</p>
+<pre><code><span class="class">.lazy</span> <span class="rules">{
+  <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;
+}</span>
+</code></pre><p>在支持 JavaScript 的浏览器中, 你必须在 DOM ready 时将占位符显示出来, 这可以在插件初始化的同时完成.</p>
+<pre><code>$<span class="comment">("img.lazy")</span>.show<span class="comment">()</span>.lazyload<span class="comment">()</span>;
+</code></pre><p>这些都是可选的, 但如果你希望插件平稳降级这些都是应该做的.</p>
+<h3 id="设置敏感度-1">设置敏感度</h3><p>默认情况下图片会出现在屏幕时加载. 如果你想提前加载图片, 可以设置 <code>threshold</code> 选项, 设置 <code>threshold</code> 为 200 令图片在距离屏幕 200 像素时提前加载.</p>
+<pre><code>$("<span class="tag">img</span><span class="class">.lazy</span>")<span class="class">.lazyload</span>(<span class="rules">{ <span class="rule"><span class="attribute">threshold </span>:<span class="value"> <span class="number">200</span> })</span></span>;</span>
+</code></pre><h3 id="占位图片">占位图片</h3><p>你还可以设定一个占位图片并定义事件来触发加载动作. 这时需要为占位图片设定一个 URL 地址. 透明, 灰色和白色的 1x1 象素的图片已经包含在插件里面.</p>
+<h3 id="事件触发加载">事件触发加载</h3><p>事件可以是任何 jQuery 时间, 如: <code>click</code> 和 <code>mouseover</code>. 你还可以使用自定义的事件, 如: <code>sporty</code> 和 <code>foobar</code>. 默认情况下处于等待状态, 直到用户滚动到窗口上图片所在位置. 在灰色占位图片被点击之前阻止加载图片, 你可以这样做:</p>
+<pre><code>$("<span class="tag">img</span>")<span class="class">.lazyload</span>(<span class="rules">{
+    <span class="rule"><span class="attribute">placeholder </span>:<span class="value"> <span class="string">"img/grey.gif"</span>,
+    event : <span class="string">"click"</span>
+})</span></span>;</span>
+</code></pre><h3 id="使用特效">使用特效</h3><p>当图片完全加载的时候, 插件默认地使用 <code>show()</code>方法来将图显示出来. 其实你可以使用任何你想用的特效来处理. 下面的代码使用 <code>FadeIn</code> 效果. 这是效果演示页面.</p>
+<pre><code>$("<span class="tag">img</span><span class="class">.lazy</span>")<span class="class">.lazyload</span>(<span class="rules">{ 
+    <span class="rule"><span class="attribute">effect </span>:<span class="value"> <span class="string">"fadeIn"</span>
+})</span></span>;</span>
+</code></pre><h2 id="图片在容器里面">图片在容器里面</h2><p>你可以将插件用在可滚动容器的图片上, 例如带滚动条的 DIV 元素. 你要做的只是将容器定义为 jQuery 对象并作为参数传到初始化方法里面. 这是<a href="http://www.appelsiini.net/projects/lazyload/enabled_container.html" target="_blank" rel="external">水平滚动演示页面</a>和<a href="http://www.appelsiini.net/projects/lazyload/enabled_wide_container.html" target="_blank" rel="external">垂直滚动的演示页面</a>.</p>
+<pre><code><span class="id">#container</span> <span class="rules">{
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">600px</span></span></span>;
+    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> scroll</span></span>;
+}</span>
+$("<span class="tag">img</span><span class="class">.lazy</span>")<span class="class">.lazyload</span>(<span class="rules">{         
+     <span class="rule"><span class="attribute">container</span>:<span class="value"> $(<span class="string">"#container"</span>)
+})</span></span>;</span>
+</code></pre><h3 id="当图片不顺序排列">当图片不顺序排列</h3><p>滚动页面的时候, Lazy Load 会循环为加载的图片. 在循环中检测图片是否在可视区域内. 默认情况下在找到第一张不在可见区域的图片时停止循环. 图片被认为是流式分布的, 图片在页面中的次序和 HTML 代码中次序相同. 但是在一些布局中, 这样的假设是不成立的. 不过你可以通过 <code>failurelimit</code> 选项来控制加载行为.</p>
+<pre><code>$("<span class="tag">img</span><span class="class">.lazy</span>")<span class="class">.lazyload</span>(<span class="rules">{ 
+    <span class="rule"><span class="attribute">failure_limit </span>:<span class="value"> <span class="number">10</span>
+})</span></span>;</span>
+</code></pre><p>将 <code>failurelimit</code> 设为 10 令插件找到 10 个不在可见区域的图片是才停止搜索. 如果你有一个猥琐的布局, 请把这个参数设高一点.</p>
+<h3 id="延迟加载图片">延迟加载图片</h3><p>Lazy Load 插件的一个不完整的功能, 但是这也能用来实现图片的延迟加载. 下面的代码实现了页面加载完成后再加载. 页面加载完成 5 秒后, 指定区域内的图片会自动进行加载. 这是延迟加载演示页面.</p>
+<pre><code>$(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{          
+    $(<span class="string">"img:below-the-fold"</span>).lazyload({
+        event : <span class="string">"sporty"</span>
+    });
+});
+$(<span class="built_in">window</span>).bind(<span class="string">"load"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ 
+    <span class="keyword">var</span> timeout = setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{$(<span class="string">"img.lazy"</span>).trigger(<span class="string">"sporty"</span>)}, <span class="number">5000</span>);
+});
+</code></pre><h3 id="加载隐藏的图片">加载隐藏的图片</h3><p>可能在你的页面上埋藏可很多隐藏的图片. 比如插件用在对列表的筛选, 你可以不断地修改列表中各条目的显示状态. 为了提升性能, Lazy Load 默认忽略了隐藏图片. 如果你想要加载隐藏图片, 请将 <code>skip_invisible</code> 设为 <code>false</code></p>
+<pre><code>$("<span class="tag">img</span><span class="class">.lazy</span>")<span class="class">.lazyload</span>(<span class="rules">{ 
+    <span class="rule"><span class="attribute">skip_invisible </span>:<span class="value"> false
+})</span></span>;</span>
+</code></pre><h3 id="下载插件">下载插件</h3><p>最新版本 <a href="https://raw.github.com/tuupola/jquery_lazyload/master/jquery.lazyload.js" target="_blank" rel="external">源代码</a>和<a href="https://raw.github.com/tuupola/jquery_lazyload/master/jquery.lazyload.min.js" target="_blank" rel="external">压缩的代码</a>. 插件已经在 OSX 的 Safari 5.1, Safari 6, Chrome 20, Firefox 12 浏览器上, Windows 的 Chrome 20, IE 8 and IE 9 浏览器上, 以及 iOS5 (iPhone 和 iPad) 的 Safari 5.1 浏览器上测试过.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>本文翻译自 <a href="http://www.appelsiini.net/projects/lazyload" title="Lazy Load Plugin for jQuery">Lazy Load Plugin for jQuery</a>, 介绍一个 jQuery 插件, 它提供懒汉式加载页面图片的功能.</p>
+</blockquote>
+<p>Lazy Load 是一个用 JavaScript 编写的 jQuery 插件. 它可以延迟加载长页面中的图片. 在浏览器可视区域外的图片不会被载入, 直到用户将页面滚动到它们所在的位置. 这与图片预加载的处理方式正好是相反的.</p>
+<p>在包含很多大图片长页面中延迟加载图片可以加快页面加载速度. 浏览器将会在加载可见图片之后即进入就绪状态. 在某些情况下还可以帮助降低服务器负担.</p>
+<p>Lazy Load 灵感来自 Matt Mlinac 制作的 <a href="http://developer.yahoo.com/yui/imageloader/">YUI ImageLoader</a> 工具箱. 这是<a href="http://www.appelsiini.net/projects/lazyload/enabled.html">演示页面</a>.</p>
+<blockquote>
+<p>这里有几个可用的 demo 页面提供给那些匆忙的人参考: <a href="http://www.appelsiini.net/projects/lazyload/enabled.html">基本选项</a>,<a href="http://www.appelsiini.net/projects/lazyload/enabled_fadein.html"> 淡入展示效果</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_noscript.html">script 脚本缺失的降级处理</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_wide.html">水平滚动</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_wide_container.html">容器内水平滚动</a>,<a href="http://www.appelsiini.net/projects/lazyload/enabled_container.html"> 容器内垂直滚动</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_gazillion.html">页面内存在超多图片</a>, <a href="http://www.appelsiini.net/projects/lazyload/enabled_timeout.html">延时加载图片</a></p>
+<p>查看 demo 中每个请求间浏览器缓存的内容. 你可以通过开发者控制台 (Chrome 和 Safari), Firebug (Firefox) 或者 HTTPHeaders (IE) 检测到实际加载的内容.</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="Lazy Load" scheme="http://blog.12xiaoshi.com/tags/Lazy-Load/"/>
+    
+      <category term="jQuery" scheme="http://blog.12xiaoshi.com/tags/jQuery/"/>
+    
+      <category term="延迟加载" scheme="http://blog.12xiaoshi.com/tags/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[实现在Quartz中使用Spring的@Autowire注入Bean对象]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/06/28/tech/spring_quartz_autowire/"/>
+    <id>http://blog.12xiaoshi.com/2015/06/28/tech/spring_quartz_autowire/</id>
+    <published>2015-06-28T14:50:01.000Z</published>
+    <updated>2015-06-28T15:09:10.361Z</updated>
+    <content type="html"><![CDATA[<pre><code>&lt;bean id=<span class="string">"customSpringBeanJobFactory"</span> class=<span class="string">"com.nzaom.server.job.CustomSpringBeanJobFactory"</span>/&gt;
+
+&lt;bean id=<span class="string">"itemEndTimeOverJob"</span> class=<span class="string">"org.springframework.scheduling.quartz.JobDetailFactoryBean"</span>&gt;
+    &lt;property name=<span class="string">"jobClass"</span> value=<span class="string">"com.nzaom.server.job.ItemEndTimeOverJob"</span> /&gt;
+    &lt;property name=<span class="string">"durability"</span> value=<span class="string">"true"</span> /&gt;
+&lt;/bean&gt;
+&lt;bean class=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;
+    &lt;property name=<span class="string">"jobDetails"</span>&gt;
+        &lt;list&gt;&lt;<span class="keyword">ref</span> bean=<span class="string">"itemEndTimeOverJob"</span> /&gt;&lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=<span class="string">"triggers"</span>&gt;
+        &lt;list&gt;
+            &lt;bean class=<span class="string">"org.springframework.scheduling.quartz.CronTriggerFactoryBean"</span>&gt;
+                &lt;property name=<span class="string">"jobDetail"</span> <span class="keyword">ref</span>=<span class="string">"itemEndTimeOverJob"</span> /&gt;
+                &lt;property name=<span class="string">"cronExpression"</span> value=<span class="string">"0 0/1 * * * ?"</span> /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=<span class="string">"jobFactory"</span> <span class="keyword">ref</span>=<span class="string">"customSpringBeanJobFactory"</span>/&gt;
+&lt;/bean&gt;
+</code></pre><a id="more"></a>
+<pre><code><span class="keyword">package</span> com.nzaom.server.job;
+
+<span class="keyword">import</span> org.quartz.spi.<span class="type">TriggerFiredBundle</span>;
+<span class="keyword">import</span> org.springframework.beans.factory.annotation.<span class="type">Autowired</span>;
+<span class="keyword">import</span> org.springframework.beans.factory.config.<span class="type">AutowireCapableBeanFactory</span>;
+<span class="keyword">import</span> org.springframework.scheduling.quartz.<span class="type">SpringBeanJobFactory</span>;
+
+<span class="comment">/**
+ * 实现支持在Quartz中使用Autowire注入
+ * @author kalman03
+ */</span>
+public <span class="class"><span class="keyword">class</span> <span class="title">CustomSpringBeanJobFactory</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">SpringBeanJobFactory</span> {</span>
+
+    <span class="annotation">@Autowired</span>
+    <span class="keyword">private</span> <span class="type">AutowireCapableBeanFactory</span> autowireCapableBeanFactory;
+
+    <span class="annotation">@Override</span>
+    <span class="keyword">protected</span> <span class="type">Object</span> createJobInstance(<span class="type">TriggerFiredBundle</span> bundle)
+            <span class="keyword">throws</span> <span class="type">Exception</span> {
+        <span class="type">Object</span> jobInstance = <span class="keyword">super</span>.createJobInstance(bundle);
+        autowireCapableBeanFactory.autowireBean(jobInstance);
+        <span class="keyword">return</span> jobInstance;
+    }
+
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>&lt;bean id=<span class="string">"customSpringBeanJobFactory"</span> class=<span class="string">"com.nzaom.server.job.CustomSpringBeanJobFactory"</span>/&gt;
+
+&lt;bean id=<span class="string">"itemEndTimeOverJob"</span> class=<span class="string">"org.springframework.scheduling.quartz.JobDetailFactoryBean"</span>&gt;
+    &lt;property name=<span class="string">"jobClass"</span> value=<span class="string">"com.nzaom.server.job.ItemEndTimeOverJob"</span> /&gt;
+    &lt;property name=<span class="string">"durability"</span> value=<span class="string">"true"</span> /&gt;
+&lt;/bean&gt;
+&lt;bean class=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span>&gt;
+    &lt;property name=<span class="string">"jobDetails"</span>&gt;
+        &lt;list&gt;&lt;<span class="keyword">ref</span> bean=<span class="string">"itemEndTimeOverJob"</span> /&gt;&lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=<span class="string">"triggers"</span>&gt;
+        &lt;list&gt;
+            &lt;bean class=<span class="string">"org.springframework.scheduling.quartz.CronTriggerFactoryBean"</span>&gt;
+                &lt;property name=<span class="string">"jobDetail"</span> <span class="keyword">ref</span>=<span class="string">"itemEndTimeOverJob"</span> /&gt;
+                &lt;property name=<span class="string">"cronExpression"</span> value=<span class="string">"0 0/1 * * * ?"</span> /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=<span class="string">"jobFactory"</span> <span class="keyword">ref</span>=<span class="string">"customSpringBeanJobFactory"</span>/&gt;
+&lt;/bean&gt;
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="Autowire" scheme="http://blog.12xiaoshi.com/tags/Autowire/"/>
+    
+      <category term="Quartz" scheme="http://blog.12xiaoshi.com/tags/Quartz/"/>
+    
+      <category term="spring" scheme="http://blog.12xiaoshi.com/tags/spring/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[记录阿里云ECS服务器Java开发环境的搭建过程]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/06/14/tech/aliyun_esc_java_env_records/"/>
+    <id>http://blog.12xiaoshi.com/2015/06/14/tech/aliyun_esc_java_env_records/</id>
+    <published>2015-06-13T17:35:01.000Z</published>
+    <updated>2015-06-13T17:22:17.663Z</updated>
+    <content type="html"><![CDATA[<h3 id="1、新增用户admin，添加权限到wheel组">1、新增用户admin，添加权限到wheel组</h3><pre><code>adduser admin
+passwd admin
+gpasswd -<span class="operator">a</span> admin wheel
+
+参考：<span class="keyword">https</span>://www.digitalocean.com/community/tutorials/initial-server-setup-<span class="operator">with</span>-centos-<span class="number">7</span>
+</code></pre><h3 id="2、更新yum源">2、更新yum源</h3><pre><code>参考：<span class="string">http:</span><span class="comment">//help.aliyun.com/knowledge_detail.htm?knowledgeId=5974184</span>
+
+yum update 
+</code></pre><a id="more"></a>
+<h3 id="3、安装nginx">3、安装nginx</h3><pre><code>yum <span class="keyword">install</span> nginx 
+
+配置文件路径：/etc/nginx
+</code></pre><h3 id="4、systemctl_指令">4、systemctl 指令</h3><p><a href="http://cnzhx.net/blog/centos-7-rhel-7-systemd-commands/" target="_blank" rel="external">http://cnzhx.net/blog/centos-7-rhel-7-systemd-commands/</a></p>
+<h3 id="5、Java环境安装">5、Java环境安装</h3><pre><code>wget --no-cookies --<span class="tag">header</span> <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie;"</span>  http:<span class="comment">//download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm</span>
+
+rpm -ivh jdk-<span class="number">8</span>u45-linux-x64<span class="class">.rpm</span>
+
+/usr/java/jdk1.<span class="number">8.0</span>_45
+
+vi /etc/profile
+
+export JAVA_HOME=/usr/java/jdk1.<span class="number">8.0</span>_45
+export CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/jre/lib/rt<span class="class">.jar</span>:<span class="variable">$JAVA_HOME</span>/lib/<span class="tag">dt</span><span class="class">.jar</span>:<span class="variable">$JAVA_HOME</span>/lib/tools<span class="class">.jar</span>
+export PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin
+
+source /etc/profile
+</code></pre><h3 id="6、Tomcat的安装和配置">6、Tomcat的安装和配置</h3><pre><code>cd /usr
+
+wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-<span class="number">8</span>/v8.<span class="number">0.23</span>/bin/apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span>.tar.gz
+tar -xzvf apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span>.tar.gz 
+
+安装目录：/usr/apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span>
+
+配置：
+&lt;Host <span class="variable">name=</span><span class="string">"localhost"</span>  <span class="variable">appBase=</span><span class="string">"/home/admin/webapps"</span> <span class="variable">unpackWARs=</span><span class="string">"true"</span> <span class="variable">autoDeploy=</span><span class="string">"true"</span>&gt;
+
+    &lt;Context <span class="variable">path=</span><span class="string">"/"</span> <span class="variable">docBase=</span><span class="string">"application"</span> <span class="variable">reloadable=</span><span class="string">"true"</span>/&gt;
+
+&lt;/Host&gt;
+</code></pre><h3 id="7、一些便捷操作">7、一些便捷操作</h3><pre><code>ln -s <span class="regexp">/usr/</span>apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span><span class="regexp">/bin/</span>startup.sh <span class="regexp">/home/</span>admin<span class="regexp">/bin/</span>start_tomcat.sh
+ln -s <span class="regexp">/usr/</span>apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span><span class="regexp">/bin/</span>shutdown.sh <span class="regexp">/home/</span>admin<span class="regexp">/bin/</span>stop_tomcat.sh
+
+ln -s <span class="regexp">/usr/</span>apache-tomcat-<span class="number">8.0</span>.<span class="number">23</span><span class="regexp">/logs /</span>home<span class="regexp">/admin/</span>logs<span class="regexp">/tomcat</span>
+</code></pre><p><strong>nginx_status.sh:</strong></p>
+<pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">exec</span> /bin/systemctl status  nginx.service
+</code></pre><p><strong>restart_nginx.sh：</strong></p>
+<pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">exec</span> /bin/systemctl restart  nginx.service
+</code></pre><p><strong>nginx_stop.sh:</strong></p>
+<pre><code><span class="shebang">#!/bin/sh</span>
+<span class="built_in">exec</span> /bin/systemctl stop  nginx.service
+</code></pre><h3 id="8、nginx配置">8、nginx配置</h3><pre><code><span class="xml">/etc/nginx/nginx.conf:
+
+user  nginx;
+worker_processes  4;
+
+error_log  /home/admin/logs/nginx/error.log;
+
+pid        /run/nginx.pid;
+
+
+events </span><span class="expression">{
+    <span class="variable">worker</span>_<span class="variable">connections</span>  10240;
+}</span><span class="xml">
+
+http </span><span class="expression">{
+    <span class="variable">include</span>       <span class="end-block">/etc</span><span class="end-block">/nginx</span><span class="end-block">/mime.types</span>;
+    <span class="variable"><span class="keyword">default</span></span>_<span class="variable">type</span>  <span class="variable">application</span><span class="end-block">/octet-stream</span>;
+
+    <span class="variable">log</span>_<span class="variable">format</span>  <span class="variable">main</span>  '$<span class="variable">remote</span>_<span class="variable">addr</span> <span class="variable">-</span> $<span class="variable">remote</span>_<span class="variable">user</span> [$<span class="variable">time</span>_<span class="variable">local</span>] <span class="string">"$request"</span> '
+                      '$<span class="variable">status</span> $<span class="variable">body</span>_<span class="variable">bytes</span>_<span class="variable">sent</span> <span class="string">"$http_referer"</span> '
+                      '<span class="string">"$http_user_agent"</span> <span class="string">"$http_x_forwarded_for"</span>';
+
+    <span class="variable">access</span>_<span class="variable">log</span>   <span class="end-block">/home</span><span class="end-block">/admin</span><span class="end-block">/logs</span><span class="end-block">/nginx</span><span class="end-block">/access.log  main</span>;
+
+    <span class="variable">sendfile</span>        <span class="variable">on</span>;
+    <span class="begin-block">#tcp</span>_<span class="variable">nopush</span>     <span class="variable">on</span>;
+
+    <span class="begin-block">#keepalive</span>_<span class="variable">timeout</span>  0;
+    <span class="variable">keepalive</span>_<span class="variable">timeout</span>  65;
+
+    <span class="variable">gzip</span>  <span class="variable">on</span>;
+
+    <span class="variable">index</span>   <span class="variable">index.html</span> <span class="variable">index.htm</span>;
+
+    <span class="variable">upstream</span> <span class="variable">tomcat</span>_<span class="variable">server</span>{
+       <span class="variable">server</span> 127<span class="variable">.</span>0<span class="variable">.</span>0<span class="variable">.</span>1:8080 <span class="variable">weight</span>=1;
+    }</span><span class="xml">
+
+    include /etc/nginx/conf.d/*.conf;
+}
+
+/etc/nginx/conf.d/www.nzaom.com.conf:
+
+server </span><span class="expression">{
+    <span class="variable">listen</span>       80 <span class="variable"><span class="keyword">default</span></span>_<span class="variable">server</span>;
+    <span class="variable">server</span>_<span class="variable">name</span>  <span class="variable">www.nzaom.com</span> <span class="variable">nzaom.com</span> <span class="variable">nzaom.hehuyou.com</span>;
+
+    <span class="variable">charset</span> <span class="variable">utf-</span>8;
+    <span class="variable">access</span>_<span class="variable">log</span>  <span class="end-block">/home</span><span class="end-block">/admin</span><span class="end-block">/logs</span><span class="end-block">/nginx</span><span class="end-block">/access.log  main</span>;
+
+    <span class="variable">location</span> <span class="end-block">/ </span>{
+        <span class="variable">root</span> <span class="end-block">/home</span><span class="end-block">/admin</span><span class="end-block">/webapps</span>;
+        <span class="variable">proxy</span>_<span class="variable">pass</span> <span class="variable">http</span>:/<span class="end-block">/tomcat</span>_<span class="variable">server</span>;
+        <span class="variable">proxy</span>_<span class="variable">set</span>_<span class="variable">header</span>    <span class="variable">Host</span> $<span class="variable">host</span>;
+        <span class="variable">proxy</span>_<span class="variable">set</span>_<span class="variable">header</span>    <span class="variable">X-Real-IP</span> $<span class="variable">remote</span>_<span class="variable">addr</span>;
+        <span class="variable">proxy</span>_<span class="variable">set</span>_<span class="variable">header</span>    <span class="variable">REMOTE-HOST</span> $<span class="variable">remote</span>_<span class="variable">addr</span>;
+        <span class="variable">proxy</span>_<span class="variable">set</span>_<span class="variable">header</span>    <span class="variable">X-Forwarded-For</span> $<span class="variable">proxy</span>_<span class="variable">add</span>_<span class="variable">x</span>_<span class="variable">forwarded</span>_<span class="variable">for</span>;
+    }</span><span class="xml">
+
+    error_page  404              /error.htm;
+
+    # redirect server error pages to the static page /50x.html
+    #
+}</span>
+</code></pre><p>以上这些都是基础配置，相关参数还待优化。当然，进入了Java的世界，你永远少不了更复杂的配置，这些将会在日后的开发过程中遇到。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="1、新增用户admin，添加权限到wheel组">1、新增用户admin，添加权限到wheel组</h3><pre><code>adduser admin
+passwd admin
+gpasswd -<span class="operator">a</span> admin wheel
+
+参考：<span class="keyword">https</span>://www.digitalocean.com/community/tutorials/initial-server-setup-<span class="operator">with</span>-centos-<span class="number">7</span>
+</code></pre><h3 id="2、更新yum源">2、更新yum源</h3><pre><code>参考：<span class="string">http:</span><span class="comment">//help.aliyun.com/knowledge_detail.htm?knowledgeId=5974184</span>
+
+yum update 
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="ECS" scheme="http://blog.12xiaoshi.com/tags/ECS/"/>
+    
+      <category term="nginx-tomcat-java" scheme="http://blog.12xiaoshi.com/tags/nginx-tomcat-java/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="阿里云" scheme="http://blog.12xiaoshi.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[基于HandlerExceptionResolver的异常解决方案]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/06/14/tech/springmvc_exception_json/"/>
+    <id>http://blog.12xiaoshi.com/2015/06/14/tech/springmvc_exception_json/</id>
+    <published>2015-06-13T16:35:01.000Z</published>
+    <updated>2015-06-13T16:38:00.690Z</updated>
+    <content type="html"><![CDATA[<p>用到Spring Mvc框架，不知道是否有更好的方式，来统一处理业务异常。老夫采用的是继承HandlerExceptionResolver，来实现统一的异常处理。其实这个很简单，有点意思的是可以兼容不同的View，比如这个处理类需要支持返回json，也需要支持渲染一个页面。</p>
+<p>所以就有了这样的写法。</p>
+<a id="more"></a>
+<pre><code><span class="preprocessor"><span class="keyword">import</span> java.util.Map;</span>
+
+<span class="preprocessor"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span>
+<span class="preprocessor"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span>
+
+<span class="preprocessor"><span class="keyword">import</span> org.slf4j.Logger;</span>
+<span class="preprocessor"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span>
+<span class="preprocessor"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span>
+<span class="preprocessor"><span class="keyword">import</span> org.springframework.web.method.HandlerMethod;</span>
+<span class="preprocessor"><span class="keyword">import</span> org.springframework.web.servlet.HandlerExceptionResolver;</span>
+<span class="preprocessor"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span>
+
+<span class="preprocessor"><span class="keyword">import</span> com.google.common.collect.Maps;</span>
+
+/**
+ * @author kalman03
+ **/
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerExceptionResolver</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> {</span>
+
+    <span class="keyword">private</span> <span class="keyword">final</span> static Logger <span class="built_in">log</span> = LoggerFactory.getLogger(CustomerExceptionResolver.class);
+
+    @Override
+    <span class="keyword">public</span> ModelAndView resolveException(HttpServletRequest request,
+            HttpServletResponse response, Object handler, Exception ex) {
+
+        <span class="built_in">log</span>.<span class="built_in">error</span>(<span class="string">"Catch a exception."</span>,ex);
+
+        HandlerMethod <span class="function"><span class="keyword">method</span> =</span> (HandlerMethod) handler;
+        ResponseBody body =    <span class="function"><span class="keyword">method</span>.<span class="title">getMethodAnnotation</span>(</span>ResponseBody.class);
+        <span class="keyword">if</span>(body != <span class="literal">null</span>){
+            GsonJsonView gsonJsonView = <span class="keyword">new</span> GsonJsonView();
+
+            Map&lt;String, Object&gt; attributes = Maps.newHashMap();
+            attributes.put(<span class="string">"success"</span>, <span class="literal">false</span>);
+            attributes.put(<span class="string">"msg"</span>, <span class="string">"系统错误，请稍后再试"</span>);
+
+            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(gsonJsonView,attributes);
+        }
+
+        int status = response.getStatus();
+        Map&lt;String, Object&gt; model = Maps.newHashMap();
+        model.put(<span class="string">"statusCode"</span>, status);
+        model.put(<span class="string">"exception"</span>, ex);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"error"</span>, model);
+    }
+
+}
+</code></pre><p>当返回类型声明为<code>@ResponseBody</code>，老夫认为其返回结果是<code>application/json</code>，按照json的返回结果处理。</p>
+<p>基于GSON的GsonJsonView的代码：</p>
+<pre><code><span class="keyword">import</span> java.io.ByteArrayOutputStream;
+<span class="keyword">import</span> java.io.OutputStream;
+<span class="keyword">import</span> java.nio.charset.Charset;
+<span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;
+<span class="keyword">import</span> java.util.Map;
+<span class="keyword">import</span> java.util.Set;
+
+<span class="keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="keyword">import</span> org.springframework.util.CollectionUtils;
+<span class="keyword">import</span> org.springframework.validation.BindingResult;
+<span class="keyword">import</span> org.springframework.web.servlet.view.AbstractView;
+
+<span class="keyword">import</span> com.google.gson.Gson;
+<span class="keyword">import</span> com.google.gson.GsonBuilder;
+
+<span class="comment">/**
+ * @author kalman03
+ */</span>
+<span class="keyword">public</span> class GsonJsonView extends AbstractView{
+
+    <span class="keyword">private</span> Gson gson = <span class="keyword">new</span> GsonBuilder().create();
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span>  DEFAULT_CONTENT_TYPE = <span class="string">"application/json"</span>;
+
+    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> Charset UTF8                 = Charset.forName(<span class="string">"UTF-8"</span>);
+
+    <span class="keyword">private</span> Charset             charset              = UTF8;
+
+    <span class="keyword">private</span> Set&lt;<span class="keyword">String</span>&gt;         renderedAttributes;
+
+    <span class="keyword">private</span> <span class="built_in">boolean</span>             disableCaching       = <span class="keyword">true</span>;
+
+    <span class="keyword">private</span> <span class="built_in">boolean</span>             updateContentLength  = <span class="keyword">false</span>;
+
+    <span class="keyword">private</span> <span class="built_in">boolean</span>                extractValueFromSingleKeyModel = <span class="keyword">false</span>;
+
+    <span class="keyword">public</span> GsonJsonView(){
+        setContentType(DEFAULT_CONTENT_TYPE);
+        setExposePathVariables(<span class="keyword">false</span>);
+    }
+
+    <span class="keyword">public</span> <span class="keyword">void</span> setRenderedAttributes(Set&lt;<span class="keyword">String</span>&gt; renderedAttributes) {
+        <span class="keyword">this</span>.renderedAttributes = renderedAttributes;
+    }
+
+    <span class="keyword">public</span> Charset getCharset() {
+        <span class="keyword">return</span> <span class="keyword">this</span>.charset;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">void</span> setCharset(Charset charset) {
+        <span class="keyword">this</span>.charset = charset;
+    }
+
+    <span class="keyword">public</span> <span class="built_in">boolean</span> isExtractValueFromSingleKeyModel() {
+        <span class="keyword">return</span> extractValueFromSingleKeyModel;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">void</span> setExtractValueFromSingleKeyModel(<span class="built_in">boolean</span> extractValueFromSingleKeyModel) {
+        <span class="keyword">this</span>.extractValueFromSingleKeyModel = extractValueFromSingleKeyModel;
+    }
+
+    @Override
+    <span class="keyword">protected</span> <span class="keyword">void</span> renderMergedOutputModel(Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; model, HttpServletRequest request,
+                                           HttpServletResponse response) <span class="keyword">throws</span> Exception {
+        <span class="keyword">Object</span> value = filterModel(model);
+
+        <span class="keyword">String</span> <span class="built_in">text</span> = gson.toJson(value);
+        <span class="built_in">byte</span>[] bytes = <span class="built_in">text</span>.getBytes(charset);
+
+        OutputStream stream = <span class="keyword">this</span>.updateContentLength ? createTemporaryOutputStream() : response.getOutputStream();
+        stream.write(bytes);
+
+        <span class="keyword">if</span> (<span class="keyword">this</span>.updateContentLength) {
+            writeToResponse(response, (ByteArrayOutputStream) stream);
+        }
+    }
+
+    @Override
+    <span class="keyword">protected</span> <span class="keyword">void</span> prepareResponse(HttpServletRequest request, HttpServletResponse response) {
+        setResponseContentType(request, response);
+        response.setCharacterEncoding(UTF8.name());
+        <span class="keyword">if</span> (<span class="keyword">this</span>.disableCaching) {
+            response.addHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);
+            response.addHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache, no-store, max-age=0"</span>);
+            response.addDateHeader(<span class="string">"Expires"</span>, <span class="number">1</span>L);
+        }
+    }
+
+
+    <span class="keyword">public</span> <span class="keyword">void</span> setDisableCaching(<span class="built_in">boolean</span> disableCaching) {
+        <span class="keyword">this</span>.disableCaching = disableCaching;
+    }
+
+
+    <span class="keyword">public</span> <span class="keyword">void</span> setUpdateContentLength(<span class="built_in">boolean</span> updateContentLength) {
+        <span class="keyword">this</span>.updateContentLength = updateContentLength;
+    }
+
+
+    <span class="keyword">protected</span> <span class="keyword">Object</span> filterModel(Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; model) {
+        Map&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; result = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt;(model.<span class="built_in">size</span>());
+        Set&lt;<span class="keyword">String</span>&gt; renderedAttributes = !CollectionUtils.isEmpty(<span class="keyword">this</span>.renderedAttributes) ? <span class="keyword">this</span>.renderedAttributes : model.keySet();
+        <span class="keyword">for</span> (Map.Entry&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; entry : model.entrySet()) {
+            <span class="keyword">if</span> (!(entry.getValue() <span class="keyword">instanceof</span> BindingResult) &amp;&amp; renderedAttributes.contains(entry.getKey())) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+        <span class="keyword">if</span>(extractValueFromSingleKeyModel){
+            <span class="keyword">if</span>(result.<span class="built_in">size</span>() == <span class="number">1</span>){
+                <span class="keyword">for</span>(Map.Entry&lt;<span class="keyword">String</span>, <span class="keyword">Object</span>&gt; entry : result.entrySet()){
+                    <span class="keyword">return</span> entry.getValue();
+                }
+            }
+        }
+        <span class="keyword">return</span> result;
+    }
+}
+</code></pre><p>这样一来，就可以完美的支持不同返回类型的异常处理结果了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>用到Spring Mvc框架，不知道是否有更好的方式，来统一处理业务异常。老夫采用的是继承HandlerExceptionResolver，来实现统一的异常处理。其实这个很简单，有点意思的是可以兼容不同的View，比如这个处理类需要支持返回json，也需要支持渲染一个页面。</p>
+<p>所以就有了这样的写法。</p>]]>
+    
+    </summary>
+    
+      <category term="json" scheme="http://blog.12xiaoshi.com/tags/json/"/>
+    
+      <category term="springmvc" scheme="http://blog.12xiaoshi.com/tags/springmvc/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[该死的.htm！记HTTP Status 406的解决方案]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/05/25/tech/http_status_406/"/>
+    <id>http://blog.12xiaoshi.com/2015/05/25/tech/http_status_406/</id>
+    <published>2015-05-25T11:07:01.000Z</published>
+    <updated>2015-05-25T11:24:06.101Z</updated>
+    <content type="html"><![CDATA[<p>事情是这样，我想与前端异步的交互的时候返回JSON数据，标准的SpringMVC配置，可每次请求都是返回<code>HTTP Status 406</code></p>
+<p>按照各种解决方案，尝试了个遍，包括但不仅限于：</p>
+<ul>
+<li>加入jackson的lib，变更各种版本；</li>
+<li>替换为GSON的convert方式；</li>
+<li>修改produce为<code>application/json</code>；</li>
+<li>……</li>
+</ul>
+<p>以上方式并没有生效!!!!!!<br><a id="more"></a></p>
+<p>最后发现，原来SpringMVC针对请求路径的后缀是*.htm会采用<code>org.springframework.web.accept.ServletPathExtensionContentNegotiationStrategy</code>自动当做text/html来处理，而不会匹配到诸如<code>MappingJacksonHttpMessageConverter</code>，所有406就出现了。</p>
+<p>最简单的解决办法，当然是替换掉.htm为其他的后缀了。</p>
+<p>当然在不替换*.htm请求路径的前提下，可以去让<code>RequestResponseBodyMethodProcessor</code>注入到<code>ContentNegotiationStrategy</code>对象，来处理<code>@ResponseBody</code>的响应结果,老夫没有试过，各位有尝试麻烦告诉我结果。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>事情是这样，我想与前端异步的交互的时候返回JSON数据，标准的SpringMVC配置，可每次请求都是返回<code>HTTP Status 406</code></p>
+<p>按照各种解决方案，尝试了个遍，包括但不仅限于：</p>
+<ul>
+<li>加入jackson的lib，变更各种版本；</li>
+<li>替换为GSON的convert方式；</li>
+<li>修改produce为<code>application/json</code>；</li>
+<li>……</li>
+</ul>
+<p>以上方式并没有生效!!!!!!<br>]]>
+    
+    </summary>
+    
+      <category term="SpringMVC4.1" scheme="http://blog.12xiaoshi.com/tags/SpringMVC4-1/"/>
+    
+      <category term="json" scheme="http://blog.12xiaoshi.com/tags/json/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[WAMP局域网内无法通过IP访问的解决方案]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/05/17/tech/apache2.4_wamp_qa/"/>
+    <id>http://blog.12xiaoshi.com/2015/05/17/tech/apache2.4_wamp_qa/</id>
+    <published>2015-05-17T14:11:00.000Z</published>
+    <updated>2015-05-17T14:25:36.414Z</updated>
+    <content type="html"><![CDATA[<h1 id="问题">问题</h1><p>在局域网内的windows服务器上配置了WAMP，在浏览器里访问：<a href="http://localhost" target="_blank" rel="external">http://localhost</a>能正常访问，在其他机器上访问：<a href="http://192.168.0.128" target="_blank" rel="external">http://192.168.0.128</a>出现403权限不够，192.168.0.128为局域网内服务器的地址。</p>
+<h1 id="解决方案">解决方案</h1><pre><code><span class="subst">&lt;</span>Directory <span class="string">"d:/wamp/www"</span><span class="subst">&gt;</span>
+    <span class="keyword">Require</span> <span class="built_in">local</span>
+<span class="subst">&lt;</span>/Directory<span class="subst">&gt;</span> 
+修改为：
+<span class="subst">&lt;</span>Directory <span class="string">"d:/wamp/www"</span><span class="subst">&gt;</span>
+    <span class="keyword">Require</span> <span class="literal">all</span> granted
+<span class="subst">&lt;</span>/Directory<span class="subst">&gt;</span> 
+</code></pre><p>以上解决方案<strong>针对2.4的apache</strong>版本。<br><a id="more"></a>    </p>
+<h1 id="Apache2-2与Apache2-4中httpd-conf配置文件的异同">Apache2.2与Apache2.4中httpd.conf配置文件的异同</h1><h5 id="1、权限设定方式变更">1、权限设定方式变更</h5><p>2.2使用Order Deny / Allow的方式，2.4改用Require</p>
+<p>apache2.2：</p>
+<pre><code><span class="keyword"><span class="common">Order</span></span> deny,allow
+<span class="keyword"><span class="common">Deny</span></span> from <span class="literal">all</span>
+</code></pre><p>apache2.4：</p>
+<pre><code><span class="keyword">Require</span> <span class="literal">all</span> denied
+</code></pre><p>此处比较常用的有如下几种：</p>
+<pre><code><span class="keyword">Require</span> <span class="literal">all</span> denied
+<span class="keyword">Require</span> <span class="literal">all</span> granted
+<span class="keyword">Require</span> host xxx<span class="built_in">.</span>com
+<span class="keyword">Require</span> ip <span class="number">192.168</span><span class="built_in">.1</span> <span class="number">192.168</span><span class="built_in">.2</span>
+<span class="keyword">Require</span> <span class="built_in">local</span>
+</code></pre><p>注意：若有设定在htaccess文件中的也要修改</p>
+<h5 id="2、设定日志纪录方式变更">2、设定日志纪录方式变更</h5><p>RewriteLogLevel 指令改为 logLevel</p>
+<p>LOGLEVEL设置第一个值是针对整个Apache的预设等级，后方可以对指定的模块修改此模块的日志记录等级</p>
+<p>比如：</p>
+<pre><code><span class="title">LogLevel</span> <span class="built_in">warn</span> rewrite: <span class="built_in">warn</span>
+</code></pre><h5 id="3、Namevirtualhost_被移除">3、Namevirtualhost 被移除</h5><h5 id="4、需载入更多的模块">4、需载入更多的模块</h5><p>开启Gzip在apache2.2中需载入mod_deflate，apache2.4中需载入mod_filter和mod_deflate</p>
+<p>开启SSL在apache2.2中需载入mod_ssl，apache2.4中需载入mod_socache_shmcb和mod_ssl</p>
+<h5 id="5、在windows环境建议的设置">5、在windows环境建议的设置</h5><pre><code><span class="keyword">EnableSendfile</span> <span class="literal">Off</span>
+<span class="keyword">EnableMMAP</span> <span class="literal">Off</span>
+</code></pre><p>当Log日志出现AcceptEx failed等错误时建议设置</p>
+<pre><code>AcceptFilter <span class="keyword">http</span> <span class="constant">none</span>
+AcceptFilter <span class="keyword">https</span> <span class="constant">none</span>
+</code></pre><p>说明：Win32DisableAcceptEx在apache2.4中被AcceptFilter None取代</p>
+<h5 id="6、Listen设定的调整">6、Listen设定的调整</h5><p>以443为例，不可以只设定Listen 443</p>
+<p>会出现以下错误：</p>
+<blockquote>
+<p>(OS 10048)一次只能用一个通讯端地址（通讯协定/网路位址/连接) : AH00072: make_sock: could not bind to address [::]:443</p>
+<p>(OS 10048)一次只能用一个通讯端地址（通讯协定/网路位址/连接) : AH00072: make_sock: could not bind to address 0.0.0.0:443</p>
+<p>AH00451: no listening sockets available, shutting down</p>
+<p>AH00015: Unable to open logs</p>
+</blockquote>
+<p>因此需指定监听的IP，可设定多个</p>
+<p>例如：</p>
+<pre><code><span class="title">Listen</span> <span class="number">192.168.2.1:443</span>
+Listen <span class="number">127.0.0.1:443</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="问题">问题</h1><p>在局域网内的windows服务器上配置了WAMP，在浏览器里访问：<a href="http://localhost">http://localhost</a>能正常访问，在其他机器上访问：<a href="http://192.168.0.128">http://192.168.0.128</a>出现403权限不够，192.168.0.128为局域网内服务器的地址。</p>
+<h1 id="解决方案">解决方案</h1><pre><code><span class="subst">&lt;</span>Directory <span class="string">"d:/wamp/www"</span><span class="subst">&gt;</span>
+    <span class="keyword">Require</span> <span class="built_in">local</span>
+<span class="subst">&lt;</span>/Directory<span class="subst">&gt;</span> 
+修改为：
+<span class="subst">&lt;</span>Directory <span class="string">"d:/wamp/www"</span><span class="subst">&gt;</span>
+    <span class="keyword">Require</span> <span class="literal">all</span> granted
+<span class="subst">&lt;</span>/Directory<span class="subst">&gt;</span> 
+</code></pre><p>以上解决方案<strong>针对2.4的apache</strong>版本。<br>]]>
+    
+    </summary>
+    
+      <category term="apache2.4.9" scheme="http://blog.12xiaoshi.com/tags/apache2-4-9/"/>
+    
+      <category term="wamp" scheme="http://blog.12xiaoshi.com/tags/wamp/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Windows下Sonatype Nexus在局域网内无法访问的解决方案]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/05/17/tech/sonatype_nexus_qa/"/>
+    <id>http://blog.12xiaoshi.com/2015/05/17/tech/sonatype_nexus_qa/</id>
+    <published>2015-05-17T14:00:00.000Z</published>
+    <updated>2015-05-17T14:22:36.176Z</updated>
+    <content type="html"><![CDATA[<h1 id="问题">问题</h1><p>在局域网内的windows服务器上配置了Sonatype Nexus，在浏览器里访问：<a href="http://localhost:8081/nexus" target="_blank" rel="external">http://localhost:8081/nexus</a>能正常访问，在其他机器上访问：<a href="http://192.168.0.128:8081/nexus" target="_blank" rel="external">http://192.168.0.128:8081/nexus</a>无法访问，192.168.0.128为局域网内服务器的地址。</p>
+<h1 id="解决方案">解决方案</h1><p>8081端口默认从局域网其他机器是无法访问的，需要在防火墙中新建入站规则，指定端口为8081即可.</p>
+<p><img src="http://img02.taobaocdn.com/imgextra/i2/102975691/TB21F8_cVXXXXaIXXXXXXXXXXXX-102975691.png" alt=""></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="问题">问题</h1><p>在局域网内的windows服务器上配置了Sonatype Nexus，在浏览器里访问：<a href="http://localhost:8081/nexus" target="_blank" rel="external">http:/]]>
+    </summary>
+    
+      <category term="maven" scheme="http://blog.12xiaoshi.com/tags/maven/"/>
+    
+      <category term="nexus" scheme="http://blog.12xiaoshi.com/tags/nexus/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java解析ISO8601时间标准]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/05/06/tech/ISO8601_java/"/>
+    <id>http://blog.12xiaoshi.com/2015/05/06/tech/ISO8601_java/</id>
+    <published>2015-05-05T16:35:01.000Z</published>
+    <updated>2015-09-04T06:24:34.133Z</updated>
+    <content type="html"><![CDATA[<p>上篇文章讲到了如何获取Apple提供的rss数据，细心的同学一定会发现，Apple返回rss中的时间格式是这样：<br>2015-04-04T23:58:49-07:00</p>
+<p>第一眼看到它觉得很难明白，后面老夫特意咨询了下，小白了一回(rss类的时间格式都是这个标准，泪奔)，原来这就是传说中的<strong>ISO8601</strong>（<a href="http://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="external">http://en.wikipedia.org/wiki/ISO_8601</a>），中文名叫做：《数据存储和交换形式·信息交换·日期和时间的表示方法》</p>
+<p>所以明白后，这个晦涩的时间格式用中文表示就是：</p>
+<blockquote>
+<p>2015-04-04T23:58:49-07:00</p>
+<p>2015年04月04日23时58分49秒（时区UTC-7）</p>
+</blockquote>
+<p>对于Java代码，该怎么解析呢？</p>
+<a id="more"></a>
+<p>复制了一段<a href="http://jackson.codehaus.org/1.9.9/javadoc/org/codehaus/jackson/map/util/ISO8601Utils.html" target="_blank" rel="external">ISO8601Utils</a>的解析代码，来自著名的Java JSON-processor <strong><a href="http://jackson.codehaus.org/" target="_blank" rel="external">Jackson</a></strong>：</p>
+<pre><code><span class="keyword">package</span> org.codehaus.jackson.<span class="built_in">map</span>.util;
+
+<span class="keyword">import</span> java.util.*;
+
+<span class="comment">/**
+ * Utilities methods for manipulating dates in iso8601 format. This is much much faster and GC friendly than
+ * using SimpleDateFormat so highly suitable if you (un)serialize lots of date objects.
+ */</span>
+<span class="keyword">public</span> class ISO8601Utils {
+
+    <span class="comment">/**
+     * ID to represent the 'GMT' string
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span> GMT_ID = <span class="string">"GMT"</span>;
+
+    <span class="comment">/**
+     * The GMT timezone
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> TimeZone TIMEZONE_GMT = TimeZone.getTimeZone(GMT_ID);
+
+    <span class="comment">/**
+     * Format a date into 'yyyy-MM-ddThh:mm:ssZ' (GMT timezone, no milliseconds precision)
+     *
+     * @param date the date to format
+     * @return the date formatted as 'yyyy-MM-ddThh:mm:ssZ'
+     */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> format(Date date) {
+        <span class="keyword">return</span> format(date, <span class="keyword">false</span>, TIMEZONE_GMT);
+    }
+
+    <span class="comment">/**
+     * Format a date into 'yyyy-MM-ddThh:mm:ss[.sss]Z' (GMT timezone)
+     *
+     * @param date   the date to format
+     * @param millis true to include millis precision otherwise false
+     * @return the date formatted as 'yyyy-MM-ddThh:mm:ss[.sss]Z'
+     */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> format(Date date, <span class="built_in">boolean</span> <span class="built_in">millis</span>) {
+        <span class="keyword">return</span> format(date, <span class="built_in">millis</span>, TIMEZONE_GMT);
+    }
+
+    <span class="comment">/**
+     * Format date into yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]
+     *
+     * @param date   the date to format
+     * @param millis true to include millis precision otherwise false
+     * @param tz     timezone to use for the formatting (GMT will produce 'Z')
+     * @return the date formatted as yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]
+     */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> format(Date date, <span class="built_in">boolean</span> <span class="built_in">millis</span>, TimeZone tz) {
+        Calendar calendar = <span class="keyword">new</span> GregorianCalendar(tz, Locale.US);
+        calendar.setTime(date);
+
+        <span class="comment">// estimate capacity of buffer as close as we can (yeah, that's pedantic ;)</span>
+        <span class="built_in">int</span> capacity = <span class="string">"yyyy-MM-ddThh:mm:ss"</span>.length();
+        capacity += <span class="built_in">millis</span> ? <span class="string">".sss"</span>.length() : <span class="number">0</span>;
+        capacity += tz.getRawOffset() == <span class="number">0</span> ? <span class="string">"Z"</span>.length() : <span class="string">"+hh:mm"</span>.length();
+        StringBuilder formatted = <span class="keyword">new</span> StringBuilder(capacity);
+
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.YEAR), <span class="string">"yyyy"</span>.length());
+        formatted.<span class="built_in">append</span>(<span class="string">'-'</span>);
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.MONTH) + <span class="number">1</span>, <span class="string">"MM"</span>.length());
+        formatted.<span class="built_in">append</span>(<span class="string">'-'</span>);
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.DAY_OF_MONTH), <span class="string">"dd"</span>.length());
+        formatted.<span class="built_in">append</span>(<span class="string">'T'</span>);
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.HOUR_OF_DAY), <span class="string">"hh"</span>.length());
+        formatted.<span class="built_in">append</span>(<span class="string">':'</span>);
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.MINUTE), <span class="string">"mm"</span>.length());
+        formatted.<span class="built_in">append</span>(<span class="string">':'</span>);
+        padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.SECOND), <span class="string">"ss"</span>.length());
+        <span class="keyword">if</span> (<span class="built_in">millis</span>) {
+            formatted.<span class="built_in">append</span>(<span class="string">'.'</span>);
+            padInt(formatted, calendar.<span class="built_in">get</span>(Calendar.MILLISECOND), <span class="string">"sss"</span>.length());
+        }
+
+        <span class="built_in">int</span> offset = tz.getOffset(calendar.getTimeInMillis());
+        <span class="keyword">if</span> (offset != <span class="number">0</span>) {
+            <span class="built_in">int</span> hours = Math.<span class="built_in">abs</span>((offset / (<span class="number">60</span> * <span class="number">1000</span>)) / <span class="number">60</span>);
+            <span class="built_in">int</span> minutes = Math.<span class="built_in">abs</span>((offset / (<span class="number">60</span> * <span class="number">1000</span>)) % <span class="number">60</span>);
+            formatted.<span class="built_in">append</span>(offset &lt; <span class="number">0</span> ? <span class="string">'-'</span> : <span class="string">'+'</span>);
+            padInt(formatted, hours, <span class="string">"hh"</span>.length());
+            formatted.<span class="built_in">append</span>(<span class="string">':'</span>);
+            padInt(formatted, minutes, <span class="string">"mm"</span>.length());
+        } <span class="keyword">else</span> {
+            formatted.<span class="built_in">append</span>(<span class="string">'Z'</span>);
+        }
+
+        <span class="keyword">return</span> formatted.toString();
+    }
+
+
+    <span class="comment">/**
+     * Parse a date from ISO-8601 formatted string. It expects a format yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]
+     *
+     * @param date ISO string to parse in the appropriate format.
+     * @return the parsed date
+     * @throws IllegalArgumentException if the date is not in the appropriate format
+     */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> Date parse(<span class="keyword">String</span> date) {
+        <span class="keyword">try</span> {
+            <span class="built_in">int</span> offset = <span class="number">0</span>;
+
+            <span class="comment">// extract year</span>
+            <span class="built_in">int</span> <span class="built_in">year</span> = parseInt(date, offset, offset += <span class="number">4</span>);
+            checkOffset(date, offset, <span class="string">'-'</span>);
+
+            <span class="comment">// extract month</span>
+            <span class="built_in">int</span> <span class="built_in">month</span> = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">2</span>);
+            checkOffset(date, offset, <span class="string">'-'</span>);
+
+            <span class="comment">// extract day</span>
+            <span class="built_in">int</span> <span class="built_in">day</span> = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">2</span>);
+            checkOffset(date, offset, <span class="string">'T'</span>);
+
+            <span class="comment">// extract hours, minutes, seconds and milliseconds</span>
+            <span class="built_in">int</span> <span class="built_in">hour</span> = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">2</span>);
+            checkOffset(date, offset, <span class="string">':'</span>);
+
+            <span class="built_in">int</span> minutes = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">2</span>);
+            checkOffset(date, offset, <span class="string">':'</span>);
+
+            <span class="built_in">int</span> seconds = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">2</span>);
+            <span class="comment">// milliseconds can be optional in the format</span>
+            <span class="built_in">int</span> milliseconds = <span class="number">0</span>; <span class="comment">// always use 0 otherwise returned date will include millis of current time</span>
+            <span class="keyword">if</span> (date.charAt(offset) == <span class="string">'.'</span>) {
+                checkOffset(date, offset, <span class="string">'.'</span>);
+                milliseconds = parseInt(date, offset += <span class="number">1</span>, offset += <span class="number">3</span>);
+            }
+
+            <span class="comment">// extract timezone</span>
+            <span class="keyword">String</span> timezoneId;
+            <span class="built_in">char</span> timezoneIndicator = date.charAt(offset);
+            <span class="keyword">if</span> (timezoneIndicator == <span class="string">'+'</span> || timezoneIndicator == <span class="string">'-'</span>) {
+                timezoneId = GMT_ID + date.substring(offset);
+            } <span class="keyword">else</span> <span class="keyword">if</span> (timezoneIndicator == <span class="string">'Z'</span>) {
+                timezoneId = GMT_ID;
+            } <span class="keyword">else</span> {
+                <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"Invalid time zone indicator "</span> + timezoneIndicator);
+            }
+            TimeZone timezone = TimeZone.getTimeZone(timezoneId);
+            <span class="keyword">if</span> (!timezone.getID().equals(timezoneId)) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException();
+            }
+
+            Calendar calendar = <span class="keyword">new</span> GregorianCalendar(timezone);
+            calendar.setLenient(<span class="keyword">false</span>);
+            calendar.<span class="built_in">set</span>(Calendar.YEAR, <span class="built_in">year</span>);
+            calendar.<span class="built_in">set</span>(Calendar.MONTH, <span class="built_in">month</span> - <span class="number">1</span>);
+            calendar.<span class="built_in">set</span>(Calendar.DAY_OF_MONTH, <span class="built_in">day</span>);
+            calendar.<span class="built_in">set</span>(Calendar.HOUR_OF_DAY, <span class="built_in">hour</span>);
+            calendar.<span class="built_in">set</span>(Calendar.MINUTE, minutes);
+            calendar.<span class="built_in">set</span>(Calendar.SECOND, seconds);
+            calendar.<span class="built_in">set</span>(Calendar.MILLISECOND, milliseconds);
+
+            <span class="keyword">return</span> calendar.getTime();
+        } <span class="keyword">catch</span> (IndexOutOfBoundsException e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Failed to parse date "</span> + date, e);
+        } <span class="keyword">catch</span> (NumberFormatException e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Failed to parse date "</span> + date, e);
+        } <span class="keyword">catch</span> (IllegalArgumentException e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Failed to parse date "</span> + date, e);
+        }
+    }
+
+    <span class="comment">/**
+     * Check if the expected character exist at the given offset of the
+     *
+     * @param value    the string to check at the specified offset
+     * @param offset   the offset to look for the expected character
+     * @param expected the expected character
+     * @throws IndexOutOfBoundsException if the expected character is not found
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> checkOffset(<span class="keyword">String</span> value, <span class="built_in">int</span> offset, <span class="built_in">char</span> expected) <span class="keyword">throws</span> IndexOutOfBoundsException {
+        <span class="built_in">char</span> found = value.charAt(offset);
+        <span class="keyword">if</span> (found != expected) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"Expected '"</span> + expected + <span class="string">"' character but found '"</span> + found + <span class="string">"'"</span>);
+        }
+    }
+
+    <span class="comment">/**
+     * Parse an integer located between 2 given offsets in a string
+     *
+     * @param value      the string to parse
+     * @param beginIndex the start index for the integer in the string
+     * @param endIndex   the end index for the integer in the string
+     * @return the int
+     * @throws NumberFormatException if the value is not a number
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> parseInt(<span class="keyword">String</span> value, <span class="built_in">int</span> beginIndex, <span class="built_in">int</span> endIndex) <span class="keyword">throws</span> NumberFormatException {
+        <span class="keyword">if</span> (beginIndex &lt; <span class="number">0</span> || endIndex &gt; value.length() || beginIndex &gt; endIndex) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(value);
+        }
+        <span class="comment">// use same logic as in Integer.parseInt() but less generic we're not supporting negative values</span>
+        <span class="built_in">int</span> i = beginIndex;
+        <span class="built_in">int</span> result = <span class="number">0</span>;
+        <span class="built_in">int</span> digit;
+        <span class="keyword">if</span> (i &lt; endIndex) {
+            digit = Character.digit(value.charAt(i++), <span class="number">10</span>);
+            <span class="keyword">if</span> (digit &lt; <span class="number">0</span>) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"Invalid number: "</span> + value);
+            }
+            result = -digit;
+        }
+        <span class="keyword">while</span> (i &lt; endIndex) {
+            digit = Character.digit(value.charAt(i++), <span class="number">10</span>);
+            <span class="keyword">if</span> (digit &lt; <span class="number">0</span>) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"Invalid number: "</span> + value);
+            }
+            result *= <span class="number">10</span>;
+            result -= digit;
+        }
+        <span class="keyword">return</span> -result;
+    }
+
+    <span class="comment">/**
+     * Zero pad a number to a specified length
+     *
+     * @param buffer buffer to use for padding
+     * @param value  the integer value to pad if necessary.
+     * @param length the length of the string we should zero pad
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> padInt(StringBuilder buffer, <span class="built_in">int</span> value, <span class="built_in">int</span> length) {
+        <span class="keyword">String</span> strValue = Integer.toString(value);
+        <span class="keyword">for</span> (<span class="built_in">int</span> i = length - strValue.length(); i &gt; <span class="number">0</span>; i--) {
+            buffer.<span class="built_in">append</span>(<span class="string">'0'</span>);
+        }
+        buffer.<span class="built_in">append</span>(strValue);
+    }
+}
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>上篇文章讲到了如何获取Apple提供的rss数据，细心的同学一定会发现，Apple返回rss中的时间格式是这样：<br>2015-04-04T23:58:49-07:00</p>
+<p>第一眼看到它觉得很难明白，后面老夫特意咨询了下，小白了一回(rss类的时间格式都是这个标准，泪奔)，原来这就是传说中的<strong>ISO8601</strong>（<a href="http://en.wikipedia.org/wiki/ISO_8601">http://en.wikipedia.org/wiki/ISO_8601</a>），中文名叫做：《数据存储和交换形式·信息交换·日期和时间的表示方法》</p>
+<p>所以明白后，这个晦涩的时间格式用中文表示就是：</p>
+<blockquote>
+<p>2015-04-04T23:58:49-07:00</p>
+<p>2015年04月04日23时58分49秒（时区UTC-7）</p>
+</blockquote>
+<p>对于Java代码，该怎么解析呢？</p>]]>
+    
+    </summary>
+    
+      <category term="ISO8601" scheme="http://blog.12xiaoshi.com/tags/ISO8601/"/>
+    
+      <category term="rss时间" scheme="http://blog.12xiaoshi.com/tags/rss%E6%97%B6%E9%97%B4/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AppStore应用排行榜、应用获取接口]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/05/04/tech/appstore_affiliates_resource/"/>
+    <id>http://blog.12xiaoshi.com/2015/05/04/tech/appstore_affiliates_resource/</id>
+    <published>2015-05-04T02:35:01.000Z</published>
+    <updated>2015-09-04T06:24:12.351Z</updated>
+    <content type="html"><![CDATA[<p>老夫研究了一个下午apple的rss和search服务接口，总算知道怎么抓取应用排行榜和查找应用的接口参数了。现总结下，给各位一个参考。</p>
+<h4 id="抓取应用排行榜（上限200）">抓取应用排行榜（上限200）</h4><pre><code><span class="symbol">http:</span>/<span class="regexp">/ax.itunes.apple.com/</span><span class="constant">WebObjects/MZStoreServices.</span>woa/ws
+/<span class="constant">RSS </span>                    ------&gt;查应用排行榜，就是<span class="constant">Feed形</span>式了，当然可以查询其他
+/topfreeapplications    ------&gt;免费排行榜，收费、畅销、最新等，见下文
+/limit=<span class="number">5</span>                ------&gt;返回结果数量，上限<span class="number">200</span>
+/genre=<span class="number">6002</span>            ------&gt;所在分类，对应code查询地址：
+/json                    ------&gt;xml <span class="keyword">or</span> json
+?cc=cn                ------&gt;cc这个参数纯属误撞到的，表示所在国家或地区，参考<span class="symbol">:http</span><span class="symbol">://en</span>.wikipedia.org/wiki/%<span class="number">20</span>ISO_3166-<span class="number">1_</span>alpha-<span class="number">2</span>
+&amp;key=value                ------&gt;其他参数的键值对，自己摸索
+</code></pre><p>比如，查询当前排名前10，地区为中国的iOS应用，链接就是：</p>
+<blockquote>
+<p><a href="http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=5/json?cc=cn" target="_blank" rel="external">http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=5/json?cc=cn</a></p>
+</blockquote>
+<a id="more"></a>
+<p><br></p>
+<h4 id="查询单个应用明细（不含排行榜）">查询单个应用明细（不含排行榜）</h4><pre><code><span class="symbol">https:</span>/<span class="regexp">/itunes.apple.com/lookup</span>
+?id=<span class="number">510909506</span>        -----&gt;应用<span class="constant">Id</span>
+</code></pre><p>比如：</p>
+<blockquote>
+<p><a href="https://itunes.apple.com/lookup?id=444722625" target="_blank" rel="external">https://itunes.apple.com/lookup?id=444722625</a></p>
+</blockquote>
+<p>以上所有信息，都可以在Apple的网站上查询到，如下：</p>
+<blockquote>
+<p><a href="http://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html" target="_blank" rel="external">http://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html</a></p>
+<p><a href="https://rss.itunes.apple.com/us" target="_blank" rel="external">https://rss.itunes.apple.com/us</a></p>
+</blockquote>
+<p><br></p>
+<h4 id="痛苦">痛苦</h4><p>要是appstore可以分页查询，没有应用排行榜200上限限制，就可以时刻监控我的app的排名了。要是国内服务器可以顺利访问到服务，就不会这么痛苦的爬数据了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>老夫研究了一个下午apple的rss和search服务接口，总算知道怎么抓取应用排行榜和查找应用的接口参数了。现总结下，给各位一个参考。</p>
+<h4 id="抓取应用排行榜（上限200）">抓取应用排行榜（上限200）</h4><pre><code><span class="symbol">http:</span>/<span class="regexp">/ax.itunes.apple.com/</span><span class="constant">WebObjects/MZStoreServices.</span>woa/ws
+/<span class="constant">RSS </span>                    ------&gt;查应用排行榜，就是<span class="constant">Feed形</span>式了，当然可以查询其他
+/topfreeapplications    ------&gt;免费排行榜，收费、畅销、最新等，见下文
+/limit=<span class="number">5</span>                ------&gt;返回结果数量，上限<span class="number">200</span>
+/genre=<span class="number">6002</span>            ------&gt;所在分类，对应code查询地址：
+/json                    ------&gt;xml <span class="keyword">or</span> json
+?cc=cn                ------&gt;cc这个参数纯属误撞到的，表示所在国家或地区，参考<span class="symbol">:http</span><span class="symbol">://en</span>.wikipedia.org/wiki/%<span class="number">20</span>ISO_3166-<span class="number">1_</span>alpha-<span class="number">2</span>
+&amp;key=value                ------&gt;其他参数的键值对，自己摸索
+</code></pre><p>比如，查询当前排名前10，地区为中国的iOS应用，链接就是：</p>
+<blockquote>
+<p><a href="http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=5/json?cc=cn">http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=5/json?cc=cn</a></p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="appstore" scheme="http://blog.12xiaoshi.com/tags/appstore/"/>
+    
+      <category term="itunes" scheme="http://blog.12xiaoshi.com/tags/itunes/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[我常用的chrome扩展程序]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/04/26/tech/chrome_plugs/"/>
+    <id>http://blog.12xiaoshi.com/2015/04/26/tech/chrome_plugs/</id>
+    <published>2015-04-26T05:50:00.000Z</published>
+    <updated>2015-04-26T06:00:26.939Z</updated>
+    <content type="html"><![CDATA[<h1 id="No-1_Adblock_Plus">No.1 Adblock Plus</h1><p>免费的广告拦截器，可阻止所有烦人的广告及恶意软件和跟踪。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/cfhdojbkjhnklbpkdaibdccddilifddb" target="_blank" rel="external">https://chrome.google.com/webstore/detail/cfhdojbkjhnklbpkdaibdccddilifddb</a></p>
+<h1 id="No-2_JSONView">No.2 JSONView</h1><p>格式化Json，对于http请求返回为json的，一目了然。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc" target="_blank" rel="external">https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc</a></p>
+<h1 id="No-3_PrettyPrint">No.3 PrettyPrint</h1><p>Javascript/css 高亮格式化显示利器。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/nipdlgebaanapcphbcidpmmmkcecpkhg" target="_blank" rel="external">https://chrome.google.com/webstore/detail/nipdlgebaanapcphbcidpmmmkcecpkhg</a></p>
+<h1 id="No-4_网页截图:注释&amp;批注">No.4 网页截图:注释&amp;批注</h1><p>捕获整个页面或任何部分，矩形，圆形，箭头，线条和文字，模糊敏感信息，一键上传分享注释。支持PNG和链接。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/alelhddbbhepgpmgidjdcjakblofbmce" target="_blank" rel="external">https://chrome.google.com/webstore/detail/alelhddbbhepgpmgidjdcjakblofbmce</a></p>
+<h1 id="No-5_SnappySnippet">No.5 SnappySnippet</h1><p>非常方便的到处选中的HTML元素以及关联的css，支持一键发送对应内容到CodePen, jsFiddle ， JS Bin 。类似扩展：<a href="https://chrome.google.com/webstore/detail/pbgafccggboemhmcmnmglkgidbiigoeh" target="_blank" rel="external">CSS+HTML</a>,相比SnappySnippet的优点是保持原有元素的选择器不变。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/blfngdefapoapkcdibbdkigpeaffgcil" target="_blank" rel="external">https://chrome.google.com/webstore/detail/blfngdefapoapkcdibbdkigpeaffgcil</a></p>
+<h1 id="No-6_User-Agent_Switcher">No.6 User-Agent Switcher</h1><p>该扩展可以轻松的切换User-Agent，可快速的在浏览器中模拟不同终端的效果。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detail/ffhkkpnppgnfaobgihpdblnhmmbodake" target="_blank" rel="external">https://chrome.google.com/webstore/detail/ffhkkpnppgnfaobgihpdblnhmmbodake</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="No-1_Adblock_Plus">No.1 Adblock Plus</h1><p>免费的广告拦截器，可阻止所有烦人的广告及恶意软件和跟踪。</p>
+<p>地址：<a href="https://chrome.google.com/webstore/detai]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://blog.12xiaoshi.com/tags/chrome/"/>
+    
+      <category term="扩展程序" scheme="http://blog.12xiaoshi.com/tags/%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Maven构建应用的命令]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/04/19/tech/maven_project/"/>
+    <id>http://blog.12xiaoshi.com/2015/04/19/tech/maven_project/</id>
+    <published>2015-04-19T15:49:01.000Z</published>
+    <updated>2015-04-19T15:30:22.262Z</updated>
+    <content type="html"><![CDATA[<pre><code>mvn archetype:generate <span class="variable">-DgroupId=</span>com.kalman03 <span class="variable">-DartifactId=</span>my-webapp <span class="variable">-DarchetypeArtifactId=</span>maven-archetype-webapp <span class="variable">-DinteractiveMode=</span><span class="constant">false</span>
+</code></pre><p>构建一个web应用，不会还记不住吧？！！！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>mvn archetype:generate <span class="variable">-DgroupId=</span>com.kalman03 <span class="variable">-DartifactId=</span>my-webapp ]]>
+    </summary>
+    
+      <category term="maven" scheme="http://blog.12xiaoshi.com/tags/maven/"/>
+    
+      <category term="技术" scheme="http://blog.12xiaoshi.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[纠结与向往]]></title>
+    <link href="http://blog.12xiaoshi.com/2015/04/19/life/new_start/"/>
+    <id>http://blog.12xiaoshi.com/2015/04/19/life/new_start/</id>
+    <published>2015-04-19T08:31:01.000Z</published>
+    <updated>2015-04-19T08:31:58.666Z</updated>
+    <content type="html"><![CDATA[<p>这个决定其实在我心里面很久了，只是一直在寻找一个机会，今天，我签署了协议，意味着我即将离职。</p>
+<p>一直问自己，到底需要怎样的生活，在这么个互联网公司的日子不算太好也不算太坏，但内心深处的向往还是无比的强烈。也许，我比较任性，但人若不逼一下，又怎么知道最后怎样呢？！</p>
+<p>不管结局如何，如老婆所说</p>
+<blockquote>
+<p>“反正都这样了，置之死地而后生，展望未来，一切都会好的！”</p>
+</blockquote>
+<p>那就以崭新的姿态迎接新的生活吧，加油，还是那句话：<strong>男人，就应该对自己狠一点！</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这个决定其实在我心里面很久了，只是一直在寻找一个机会，今天，我签署了协议，意味着我即将离职。</p>
+<p>一直问自己，到底需要怎样的生活，在这么个互联网公司的日子不算太好也不算太坏，但内心深处的向往还是无比的强烈。也许，我比较任性，但人若不逼一下，又怎么知道最后怎样呢？！]]>
+    </summary>
+    
+      <category term="生活" scheme="http://blog.12xiaoshi.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+</feed>
