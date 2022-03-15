@@ -1,0 +1,1458 @@
+/*COMING SOON STYLES CSS*/
+/*=====================
+01. COMING SOON STYLE 1 CSS
+=======================*/
+
+/*=========================================
+            01. COMING SOON STYLE 1 CSS
+            02. COMING SOON STYLE 2 CSS
+            03. COMING SOON STYLE 3 CSS
+            04. COMING SOON STYLE 4 CSS
+            05. COMING SOON STYLE 5 CSS
+============================================*/
+.content-wrp .bottom-icp {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.content-wrp .bottom-icp a {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #ff6a00!important;
+}
+.coming-soon-page-style1 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    padding: 0 10%;
+    overflow: hidden;
+    background: #060c21;
+    font-family: 'Poppins', sans-serif;
+}
+
+.coming-soon-page-style1 .content-wrp {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.coming-soon-page-style1 .content-wrp .brand-name {
+    position: relative;
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style1 .content-wrp .brand-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    transform: skew(2deg,2deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style1 .content-wrp .brand-name span {
+    display: inline-block;
+    color: #37ffb5;
+}
+
+.coming-soon-page-style1 .content-wrp .brand-head {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.coming-soon-page-style1 .content-wrp .brand-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #fff;
+}
+
+.coming-soon-page-style1 .content-wrp .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    margin: 50px 0;
+}
+
+.coming-soon-page-style1 .content-wrp .countdown .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 120px;
+    max-width: 120px;
+    margin: 10px;
+    height:120px;
+    font-size:18px;
+    padding:5px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style1 .content-wrp .countdown .box:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: skew(1deg,1deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style1 .content-wrp .countdown .box div {
+    margin: 0 0 5px;
+    line-height: 1.3;
+    font-size: 40px;
+    color: #fff;
+}
+
+.coming-soon-page-style1 .content-wrp .countdown .box span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;      
+    color: #37ffb5;
+}
+
+.coming-soon-page-style1 .content-wrp .subscribe-form {
+    flex: 0 0 100%;
+}
+
+.coming-soon-page-style1 .content-wrp .subscribe-form input[type="text"] {
+    padding: 15px;
+    width: 25%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+.coming-soon-page-style1 .content-wrp .subscribe-form input[type="text"]:focus,
+.coming-soon-page-style1 .content-wrp .subscribe-form input[type="text"]:active {
+    border-color: #039c63;    
+}
+
+.coming-soon-page-style1 .content-wrp .subscribe-form button[type="submit"] {
+    padding: 15px;
+    border-radius: 4px;
+    margin-left: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: ease 1s;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+.coming-soon-page-style1 .content-wrp .subscribe-form button[type="submit"]:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style1 .content-wrp .social-shares {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.coming-soon-page-style1 .content-wrp .social-shares a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #039c63;
+    color: #039c63;
+}
+
+.coming-soon-page-style1 .content-wrp .social-shares a:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+
+
+/* responsive */
+@media only screen and (max-width: 900px) {
+    
+    .coming-soon-page-style1 {
+        flex-direction: column;
+    }
+
+    .coming-soon-page-style1 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .coming-soon-page-style1 .content-wrp .subscribe-form input[type="text"] {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .coming-soon-page-style1 .content-wrp .subscribe-form input[type="text"] {
+        width: 85%;
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-page-style1 .content-wrp .subscribe-form button[type="submit"] {
+        width: 50%;
+    }
+
+}
+
+/*=========================================
+            02. COMING SOON STYLE 2 CSS
+============================================*/
+
+.coming-soon-page-style2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    padding: 0 10%;
+    overflow: hidden;
+    background: #060c21;
+    font-family: 'Poppins', sans-serif;
+}
+
+.coming-soon-page-style2 .content-wrp {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.coming-soon-page-style2 .content-wrp .brand-name {
+    position: relative;
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style2 .content-wrp .brand-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    transform: skew(2deg,2deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style2 .content-wrp .brand-name span {
+    display: inline-block;
+    color: #37ffb5;
+}
+
+.coming-soon-page-style2 .content-wrp .brand-head {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.coming-soon-page-style2 .content-wrp .brand-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #fff;
+}
+
+.coming-soon-page-style2 .content-wrp .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    margin: 50px 0;
+}
+
+.coming-soon-page-style2 .content-wrp .countdown .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 120px;
+    max-width: 120px;
+    margin: 10px;
+    height:120px;
+    font-size:18px;
+    padding:5px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style2 .content-wrp .countdown .box:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: skew(1deg,1deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style2 .content-wrp .countdown .box div {
+    margin: 0 0 5px;
+    line-height: 1.3;
+    font-size: 40px;
+    color: #fff;
+}
+
+.coming-soon-page-style2 .content-wrp .countdown .box span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;      
+    color: #37ffb5;
+}
+
+.coming-soon-page-style2 .content-wrp .subscribe-form {
+    flex: 0 0 100%;
+}
+
+.coming-soon-page-style2 .content-wrp .subscribe-form input[type="text"] {
+    padding: 15px;
+    width: 25%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+.coming-soon-page-style2 .content-wrp .subscribe-form input[type="text"]:focus,
+.coming-soon-page-style2 .content-wrp .subscribe-form input[type="text"]:active {
+    border-color: #039c63;    
+}
+
+.coming-soon-page-style2 .content-wrp .subscribe-form button[type="submit"] {
+    padding: 15px;
+    border-radius: 4px;
+    margin-left: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: ease 1s;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+.coming-soon-page-style2 .content-wrp .subscribe-form button[type="submit"]:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style2 .content-wrp .social-shares {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.coming-soon-page-style2 .content-wrp .social-shares a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #039c63;
+    color: #039c63;
+}
+
+.coming-soon-page-style2 .content-wrp .social-shares a:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style2 .bgpulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.coming-soon-page-style2 .bgpulse span {
+    display: inline-block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background: rgba(55,255,181,0.3);
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(3n+1) {
+    background: transparent;
+    border: 3px solid rgba(55,255,181,0.3);
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(1) {
+    top: 45%;
+    left: 14%;
+    animation: bgpulseanimate 8s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(2) {
+    top: 85%;
+    left: 25%;
+    animation: bgpulseanimate 10s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(3) {
+    top: 10%;
+    left: 65%;
+    animation: bgpulseanimate 12s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(4) {
+    top: 65%;
+    left: 75%;
+    animation: bgpulseanimate 10s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(5) {
+    top: 10%;
+    left: 30%;
+    animation: bgpulseanimate 8s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(6) {
+    top: 90%;
+    left: 95%;
+    animation: bgpulseanimate 6s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(7) {
+    top: 80%;
+    left: 2%;
+    animation: bgpulseanimate 4s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(8) {
+    top: 5%;
+    left: 92%;
+    animation: bgpulseanimate 2s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(9) {
+    top: 5%;
+    left: 5%;
+    animation: bgpulseanimate 1s linear infinite;
+}
+
+.coming-soon-page-style2 .bgpulse span:nth-child(10) {
+    top: 35%;
+    left: 90%;
+    animation: bgpulseanimate 10s linear infinite;
+}
+
+@-webkit-keyframes bgpulseanimate {
+    
+    0% {
+        transform: scale(0) translateY(0) rotate(0);
+        opacity: 0;
+    } 100% {
+        transform: scale(1) translateY(-100px) rotate(360deg);
+        opacity: 1;
+    }
+
+}
+
+@keyframes bgpulseanimate {
+    
+    0% {
+        transform: scale(0) translateY(0) rotate(0);
+        opacity: 0;
+    } 100% {
+        transform: scale(1) translateY(-100px) rotate(360deg);
+        opacity: 1;
+    }
+
+}
+
+/* responsive */
+@media only screen and (max-width: 850px) {
+    
+    .coming-soon-page-style2 {
+        flex-direction: column;
+    }
+
+    .coming-soon-page-style2 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .coming-soon-page-style2 .content-wrp .subscribe-form input[type="text"] {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 625px) {
+    
+    .coming-soon-page-style2 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 305;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .coming-soon-page-style2 .content-wrp .subscribe-form input[type="text"] {
+        width: 85%;
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-page-style2 .content-wrp .subscribe-form button[type="submit"] {
+        width: 50%;
+    }
+
+}
+
+/*=========================================
+            03. COMING SOON STYLE 3 CSS
+============================================*/
+
+.coming-soon-page-style3 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    padding: 0 10%;
+    overflow: hidden;
+    background: #060c21;
+    font-family: 'Poppins', sans-serif;
+}
+
+.coming-soon-page-style3 .content-wrp {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.coming-soon-page-style3 .content-wrp .brand-name {
+    position: relative;
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style3 .content-wrp .brand-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    transform: skew(2deg,2deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style3 .content-wrp .brand-name span {
+    display: inline-block;
+    color: #37ffb5;
+}
+
+.coming-soon-page-style3 .content-wrp .brand-head {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.coming-soon-page-style3 .content-wrp .brand-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #fff;
+}
+
+.coming-soon-page-style3 .content-wrp .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    margin: 50px 0;
+}
+
+.coming-soon-page-style3 .content-wrp .countdown .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 120px;
+    max-width: 120px;
+    margin: 10px;
+    height:120px;
+    font-size:18px;
+    padding:5px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style3 .content-wrp .countdown .box:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: skew(1deg,1deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style3 .content-wrp .countdown .box div {
+    margin: 0 0 5px;
+    line-height: 1.3;
+    font-size: 40px;
+    color: #fff;
+}
+
+.coming-soon-page-style3 .content-wrp .countdown .box span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;      
+    color: #37ffb5;
+}
+
+.coming-soon-page-style3 .content-wrp .subscribe-form {
+    flex: 0 0 100%;
+}
+
+.coming-soon-page-style3 .content-wrp .subscribe-form input[type="text"] {
+    padding: 15px;
+    width: 25%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+.coming-soon-page-style3 .content-wrp .subscribe-form input[type="text"]:focus,
+.coming-soon-page-style3 .content-wrp .subscribe-form input[type="text"]:active {
+    border-color: #039c63;    
+}
+
+.coming-soon-page-style3 .content-wrp .subscribe-form button[type="submit"] {
+    padding: 15px;
+    border-radius: 4px;
+    margin-left: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: ease 1s;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+.coming-soon-page-style3 .content-wrp .subscribe-form button[type="submit"]:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style3 .content-wrp .social-shares {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.coming-soon-page-style3 .content-wrp .social-shares a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #039c63;
+    color: #039c63;
+}
+
+.coming-soon-page-style3 .content-wrp .social-shares a:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style3 .bglines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: auto;
+    width: 90vw;
+    z-index: -1;
+}
+
+.coming-soon-page-style3 .bglines .line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    background: rgba(55, 255, 181, 0.1);
+    overflow: hidden;
+}
+
+.coming-soon-page-style3 .bglines .line::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15vh;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    background: linear-gradient(rgba(55, 255, 181, 0) 0%, rgba(55, 255, 181, 0.8) 75%, rgba(55, 255, 181, 1) 100%);
+    animation: bglinesanimate 7s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(1) {
+    margin-left: -50%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(1)::after {
+    animation-delay: 2.5s;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(2) {
+    margin-left: -30%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(2)::after {
+  animation-delay: 1.5s;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(3) {
+    margin-left: -10%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(3)::after {
+  animation-delay: 1s;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(4) {
+    margin-left: 10%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(4)::after {
+    animation-delay: 2s;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(5) {
+    margin-left: 30%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(5)::after {
+  animation-delay: 2.5s;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(6) {
+    margin-left: 50%;
+}
+
+.coming-soon-page-style3 .bglines .line:nth-child(6)::after {
+  animation-delay: 3s;
+}
+
+@-webkit-keyframes bglinesanimate {
+  
+    0% {
+        top: -50%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+@keyframes bglinesanimate {
+    0% {
+        top: -50%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+/* responsive */
+@media only screen and (max-width: 850px) {
+    
+    .coming-soon-page-style3 {
+        flex-direction: column;
+    }
+
+    .coming-soon-page-style3 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .coming-soon-page-style3 .content-wrp .subscribe-form input[type="text"] {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 625px) {
+    
+    .coming-soon-page-style3 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 305;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .coming-soon-page-style3 .content-wrp .subscribe-form input[type="text"] {
+        width: 85%;
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-page-style3 .content-wrp .subscribe-form button[type="submit"] {
+        width: 50%;
+    }
+
+}
+
+/*=========================================
+            04. COMING SOON STYLE 4 CSS
+============================================*/
+
+.coming-soon-page-style4 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    padding: 0 10%;
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+.coming-soon-page-style4 .content-wrp {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.coming-soon-page-style4 .content-wrp .brand-name {
+    position: relative;
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style4 .content-wrp .brand-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    transform: skew(2deg,2deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style4 .content-wrp .brand-name span {
+    display: inline-block;
+    color: #37ffb5;
+}
+
+.coming-soon-page-style4 .content-wrp .brand-head {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #060c21;
+}
+
+.coming-soon-page-style4 .content-wrp .brand-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #060c21;
+}
+
+.coming-soon-page-style4 .content-wrp .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    margin: 50px 0;
+}
+
+.coming-soon-page-style4 .content-wrp .countdown .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 120px;
+    max-width: 120px;
+    margin: 10px;
+    height:120px;
+    font-size:18px;
+    padding:5px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style4 .content-wrp .countdown .box:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: skew(1deg,1deg);
+    background: #37ffb5;
+}
+
+.coming-soon-page-style4 .content-wrp .countdown .box div {
+    margin: 0 0 5px;
+    line-height: 1.3;
+    font-size: 40px;
+    color: #fff;
+}
+
+.coming-soon-page-style4 .content-wrp .countdown .box span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;      
+    color: #37ffb5;
+}
+
+.coming-soon-page-style4 .content-wrp .subscribe-form {
+    flex: 0 0 100%;
+}
+
+.coming-soon-page-style4 .content-wrp .subscribe-form input[type="text"] {
+    padding: 15px;
+    width: 25%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+.coming-soon-page-style4 .content-wrp .subscribe-form input[type="text"]:focus,
+.coming-soon-page-style4 .content-wrp .subscribe-form input[type="text"]:active {
+    border-color: #039c63;    
+}
+
+.coming-soon-page-style4 .content-wrp .subscribe-form button[type="submit"] {
+    padding: 15px;
+    border-radius: 4px;
+    margin-left: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: ease 1s;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #039c63;
+}
+
+.coming-soon-page-style4 .content-wrp .subscribe-form button[type="submit"]:hover {
+    background: #039c63;
+    color: #fff;
+}
+
+.coming-soon-page-style4 .content-wrp .social-shares {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.coming-soon-page-style4 .content-wrp .social-shares a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    color: #fff;
+    background: #060c21;
+}
+
+.coming-soon-page-style4 .content-wrp .social-shares a:hover {
+    background: #039c63;
+}
+
+.coming-soon-page-style4  .scrollbg {
+    background-image: url('../image/p1.svg');
+    background-position: center center;
+    background-size: 500px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 400%;
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+    animation: scrollGood 5s linear infinite;
+}
+
+@-webkit-keyframes scrollGood {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -320px, 0);
+    }
+}
+@keyframes scrollGood {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -320px, 0);
+            transform: translate3d(0, -320px, 0);
+  }
+}
+
+/* responsive */
+@media only screen and (max-width: 850px) {
+    
+    .coming-soon-page-style4 {
+        flex-direction: column;
+    }
+
+    .coming-soon-page-style4 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .coming-soon-page-style4 .content-wrp .subscribe-form input[type="text"] {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 625px) {
+    
+    .coming-soon-page-style4 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 305;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .coming-soon-page-style4 .content-wrp .subscribe-form input[type="text"] {
+        width: 85%;
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-page-style4 .content-wrp .subscribe-form button[type="submit"] {
+        width: 50%;
+    }
+
+}
+
+
+/*=========================================
+            05. COMING SOON STYLE 5 CSS
+============================================*/
+
+.coming-soon-page-style5 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    padding: 0 10%;
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+.coming-soon-page-style5 .content-wrp {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.coming-soon-page-style5 .content-wrp .brand-name {
+    position: relative;
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 5px 20px;
+    font-size: 26px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    margin: 0 auto 50px;
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style5 .content-wrp .brand-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    transform: skew(2deg,2deg);
+    background: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .brand-name span {
+    display: inline-block;
+    color: #37ffb5;
+}
+
+.coming-soon-page-style5 .content-wrp .brand-head {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .brand-desc {
+    flex: 0 0 100%;
+    max-width: 100%;
+    font-size: 13px;
+    color: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    margin: 50px 0;
+}
+
+.coming-soon-page-style5 .content-wrp .countdown .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 120px;
+    max-width: 120px;
+    margin: 10px;
+    height:120px;
+    font-size:18px;
+    padding:5px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #060c21;
+}
+
+.coming-soon-page-style5 .content-wrp .countdown .box:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: skew(1deg,1deg);
+    background: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .countdown .box div {
+    margin: 0 0 5px;
+    line-height: 1.3;
+    font-size: 40px;
+    color: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .countdown .box span {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;      
+    color: #37ffb5;
+}
+
+.coming-soon-page-style5 .content-wrp .subscribe-form {
+    flex: 0 0 100%;
+}
+
+.coming-soon-page-style5 .content-wrp .subscribe-form input[type="text"] {
+    padding: 15px;
+    width: 25%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .subscribe-form input[type="text"]:focus,
+.coming-soon-page-style5 .content-wrp .subscribe-form input[type="text"]:active {
+    border-color: #fff;
+    background: transparent; 
+    outline-color: transparent;   
+}
+
+.coming-soon-page-style5 .content-wrp .subscribe-form button[type="submit"] {
+    padding: 15px;
+    border-radius: 4px;
+    margin-left: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: ease 1s;
+    background: #060c21;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.coming-soon-page-style5 .content-wrp .subscribe-form button[type="submit"]:hover {
+    background: transparent;
+}
+
+.coming-soon-page-style5 .content-wrp .social-shares {
+    flex: 0 0 100%;
+    margin-top: 50px; 
+}
+
+.coming-soon-page-style5 .content-wrp .social-shares a {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #fff;
+    background: #060c21;
+}
+
+.coming-soon-page-style5 .content-wrp .social-shares a:hover {
+    background: transparent;
+}
+
+.coming-soon-page-style5 .gradbg {
+    background: url('../image/bg-1.jpg') no-repeat center center / cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+.coming-soon-page-style5 .gradbg::before {
+        position: absolute;
+        content: '';
+        background-image: linear-gradient(to left, rgba(50, 100, 245, 0.85), rgba(74, 84, 232, 0.85), rgba(91, 66, 219, 0.85), rgba(104, 44, 203, 0.85), rgba(114, 2, 187, 0.85));
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+}
+
+
+/* responsive */
+@media only screen and (max-width: 850px) {
+    
+    .coming-soon-page-style5 {
+        flex-direction: column;
+    }
+
+    .coming-soon-page-style5 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .coming-soon-page-style5 .content-wrp .subscribe-form input[type="text"] {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 625px) {
+    
+    .coming-soon-page-style5 .content-wrp .brand-name {
+        flex: 0 0 30%;
+        max-width: 305;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    
+    .coming-soon-page-style5 .content-wrp .subscribe-form input[type="text"] {
+        width: 85%;
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-page-style5 .content-wrp .subscribe-form button[type="submit"] {
+        width: 50%;
+    }
+
+}
+
